@@ -11,13 +11,15 @@ interface TypographyProps {
 }
 
 const Typography: FC<TypographyProps> = ({ variant, bold, italic, className, style, children }) => {
-    const Component = variant as keyof JSX.IntrinsicElements;
+    const Component = variant;
+    console.log(className)
     const classNames = [
+        className,
         styles.typography,
         styles[variant],
         bold ? styles.bold : '',
         italic ? styles.italic : '',
-        className || ''
+
     ].join(' ').trim();
 
     return <Component className={classNames} style={style}>{children}</Component>;

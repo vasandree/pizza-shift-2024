@@ -1,5 +1,3 @@
-/* src/components/Header/header.module.scss */
-
 @import '../../globals.scss';
 
 .header {
@@ -47,7 +45,6 @@
     &:hover {
       color: $primary-color;
       cursor: pointer;
-
     }
 
     svg {

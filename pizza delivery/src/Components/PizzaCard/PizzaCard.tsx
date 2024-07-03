@@ -15,9 +15,9 @@ const PizzaCard: FC<PizzaCardProps> = ({ pizza }) => {
                 <img src={`${BASE_URL}${pizza.img}`} alt={pizza.name} className={styles.pizzaCard__image} />
             </div>
             <div className={styles.pizzaCard__content}>
-                <Typography variant="h5" className={styles.pizzaCard__name}>{pizza.name}</Typography>
-                <Typography variant="p" className={styles.pizzaCard__description}>{pizza.description}</Typography>
-                <Typography variant="p" bold className={styles.pizzaCard__price}>от {pizza.sizes[0].price}</Typography>
+                <Typography variant="h5" className={styles.pizzaCard__content__name}>{pizza.name}</Typography>
+                <Typography variant="p" className={styles.pizzaCard__content__description}>{pizza.description}</Typography>
+                <Typography variant="p" bold className={styles.pizzaCard__content__price}>от {pizza.sizes[0].price}</Typography>
                 <Button style={{width: "100%"}} variant="primary">Добавить</Button>
             </div>
         </Card>
