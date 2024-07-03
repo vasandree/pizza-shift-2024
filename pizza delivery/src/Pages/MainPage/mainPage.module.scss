@@ -1,0 +1,13 @@
+@import '../../globals.scss';
+
+.mainPage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  height: 100vh;
+}

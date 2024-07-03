@@ -1,25 +1,24 @@
 import { FC } from 'react';
 import styles from './pizzaCard.module.scss';
-import {Button} from "../index.ts";
+import { Button } from '../index';
+import IPizza from '../../types/IPizza';
+import {BASE_URL} from "../../Consts";
 
 interface PizzaCardProps {
-    name: string;
-    image: string;
-    description: string;
-    price: number;
+    pizza: IPizza;
 }
 
-const PizzaCard: FC<PizzaCardProps> = ({ name, image, description, price }) => {
+const PizzaCard: FC<PizzaCardProps> = ({ pizza }) => {
     return (
         <div className={styles.pizzaCard}>
-            <img src={image} alt={name} className={styles.pizzaCard__image} />
+            <div className={styles.pizzaCard__imageContainer}>
+                <img src={`${BASE_URL}${pizza.img}`} alt={pizza.name} className={styles.pizzaCard__image} />
+            </div>
             <div className={styles.pizzaCard__content}>
-                <h3 className={styles.pizzaCard__name}>{name}</h3>
-                <p className={styles.pizzaCard__description}>{description}</p>
-                <div className={styles.pizzaCard__footer}>
-                    <span className={styles.pizzaCard__price}>от {price}</span>
-                    <Button label={"Добавить"} variant={"primary"}/>
-                </div>
+                <h3 className={styles.pizzaCard__name}>{pizza.name}</h3>
+                <p className={styles.pizzaCard__description}>{pizza.description}</p>
+                <span className={styles.pizzaCard__price}>от {pizza.sizes[0].price}</span>
+                <Button label="Добавить" variant="primary" />
             </div>
         </div>
     );

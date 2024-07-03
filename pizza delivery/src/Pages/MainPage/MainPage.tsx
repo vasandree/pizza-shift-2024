@@ -1,11 +1,31 @@
+import { FC, useState, useEffect, useMemo } from 'react';
+import styles from './mainPage.module.scss';
+import { getPizzaCatalog } from '../../Api/getPizzaCatalog';
 import {PizzaCard} from "../../Components";
-import {FC} from "react";
 
-const MainPage: FC = () =>
-    (
-        <>
-            <PizzaCard name={"Перепрони"} image={""} description={"Вкусная"} price={150}/>
-        </>
-    )
+const MainPage: FC = () => {
+    const [pizzas, setPizzas] = useState([]);
 
-export default MainPage
+    useEffect(() => {
+        const fetchPizzas = async () => {
+            let response = await getPizzaCatalog();
+            setPizzas(response);
+        };
+
+        fetchPizzas();
+    }, []);
+
+    const pizzaCards = useMemo(() => {
+        return pizzas.map((pizza: any) => (
+            <PizzaCard key={pizza.id} pizza={pizza} />
+        ));
+    }, [pizzas]);
+
+    return (
+        <div className={styles.mainPage}>
+            {pizzaCards}
+        </div>
+    );
+};
+
+export default MainPage;
