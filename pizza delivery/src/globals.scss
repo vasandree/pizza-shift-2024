@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+$primary-color: #F4511E;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$warning-color: #ffc107;
+$info-color: #17a2b8;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+
+$font-family-sans-serif: 'Inter', sans-serif;
+$font-family-monospace: 'Roboto Mono', monospace;
+
+$border-radius: 0.25rem;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-family-sans-serif;
+  color: $dark-color;
+  background-color: $light-color;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
+}

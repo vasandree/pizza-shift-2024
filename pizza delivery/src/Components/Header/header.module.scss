@@ -1,0 +1,60 @@
+/* src/components/Header/header.module.scss */
+
+@import '../../globals.scss';
+
+.header {
+  background-color: $light-color;
+  border-bottom: 1px solid $dark-color;
+  font-family: $font-family-sans-serif;
+  padding: 1rem 2rem;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    margin-right: 1rem;
+
+    img {
+      width: 100px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 1.5rem;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  &__nav_item {
+    display: flex;
+    align-items: center;
+    color: $dark-color;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5rem;
+      transition: fill 0.3s ease;
+    }
+  }
+}
