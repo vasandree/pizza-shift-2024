@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import styles from './pizzaCard.module.scss';
-import { Button, Typography } from '../index';
 import { BASE_URL } from '../../Consts';
 import {IPizza} from "../../types";
+import {Button, Typography} from "../../UiKit";
 
 interface PizzaCardProps {
     pizza: IPizza;

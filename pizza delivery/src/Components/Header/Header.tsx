@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './header.module.scss';
 import {CartIcon, EnterIcon, ExitIcon, LogoIcon, ProfileIcon, TimerIcon} from '../../Icons';
-import {Typography} from "../index.ts";
+import {Typography} from "../../UiKit";
 
 const Header: FC = () => {
 
