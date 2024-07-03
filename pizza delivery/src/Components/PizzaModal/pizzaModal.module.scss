@@ -1,0 +1,45 @@
+@import '../../globals.scss';
+
+.pizzaModal {
+
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  &__imageContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__image {
+    max-width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  &__content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__description {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__price {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+}

@@ -12,9 +12,8 @@ interface TypographyProps {
 
 const Typography: FC<TypographyProps> = ({ variant, bold, italic, className, style, children }) => {
     const Component = variant;
-    console.log(className)
     const classNames = [
-        className,
+        className || "",
         styles.typography,
         styles[variant],
         bold ? styles.bold : '',

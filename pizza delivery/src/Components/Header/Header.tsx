@@ -4,10 +4,6 @@ import {CartIcon, EnterIcon, ExitIcon, LogoIcon, ProfileIcon, TimerIcon} from '.
 import {Typography} from "../../UiKit";
 
 const Header: FC = () => {
-
-
-    console.log(styles.header__left)
-
     return (
         <header className={styles.header}>
             <div className={styles.header__container}>

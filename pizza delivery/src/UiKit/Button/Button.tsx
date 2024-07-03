@@ -8,9 +8,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     style?: CSSProperties
 }
 
-const Button: FC<ButtonProps> = ({ variant, children, style }) => {
+const Button: FC<ButtonProps> = ({ variant, children, style, ...props}) => {
     return (
-        <button className={`${styles.button} ${styles[variant]}`} style={style}>
+        <button className={`${styles.button} ${styles[variant]}`} style={style} {...props}>
             <Typography variant={"p"}>{children}</Typography>
         </button>
     );
