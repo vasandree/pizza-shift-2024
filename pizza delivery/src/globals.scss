@@ -25,12 +25,3 @@ body {
   color: $dark-color;
   background-color: $light-color;
 }
-
-a {
-  color: $primary-color;
-  text-decoration: none;
-
-  &:hover {
-    color: darken($primary-color, 10%);
-  }
-}
