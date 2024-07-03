@@ -1,0 +1,50 @@
+@import '../../globals.scss';
+
+.pizzaCard {
+  background-color: $light-color;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  width: 300px;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &__image {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  &__content {
+    padding: 1rem;
+
+    &__name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $dark-color;
+      margin: 0 0 0.5rem 0;
+    }
+
+    &__description {
+      font-size: 1rem;
+      color: $dark-color;
+      margin: 0 0 1rem 0;
+    }
+
+    &__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__price {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: $primary-color;
+    }
+  }
+}
