@@ -1,9 +1,8 @@
-import {Ingredients} from "./Enums/ingredients.ts";
+import {Ingredients} from "./Enums";
 
-interface IPizzaIngredient {
+export interface IPizzaIngredient {
     name: Ingredients;
     cost: number;
     img: string
 }
 
-export default IPizzaIngredient;

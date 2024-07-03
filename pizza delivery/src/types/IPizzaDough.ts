@@ -1,7 +1,6 @@
-import {DoughsType} from "./Enums/doughs.ts";
+import {DoughsType} from "./Enums";
 
-interface IPizzaDough {
+export interface IPizzaDough {
     name: DoughsType,
     price: number
 }
-export default IPizzaDough

@@ -1,8 +1,9 @@
-import IPizzaIngredient from "./IPizzaIngredient.ts";
-import IPizzaSize from "./IPizzaSize.ts";
-import IPizzaDough from "./IPizzaDough.ts";
+import {IPizzaIngredient} from "./IPizzaIngredient.ts";
+import {IPizzaSize} from "./IPizzaSize.ts";
+import {IPizzaDough} from "./IPizzaDough.ts";
 
-interface IPizza {
+
+export interface IPizza {
     id: string,
     name: string,
     ingredients: IPizzaIngredient[],
@@ -22,5 +23,3 @@ interface IPizza {
     isHit: boolean,
     img: string
 }
-
-export default IPizza;

@@ -1,8 +1,7 @@
-import {Sizes} from "./Enums/sizes.ts";
+import {Sizes} from "./Enums";
 
-interface IPizzaSize {
+export interface IPizzaSize {
     size: Sizes,
     price: number
 }
 
-export default IPizzaSize
