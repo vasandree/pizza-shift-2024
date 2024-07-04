@@ -1,16 +1,16 @@
-import {IPizzaIngredient} from "./IPizzaIngredient.ts";
-import {IPizzaSize} from "./IPizzaSize.ts";
-import {IPizzaDough} from "./IPizzaDough.ts";
+import {PizzaIngredient} from "./PizzaIngredient.ts";
+import {PizzaSize} from "./PizzaSize.ts";
+import {PizzaDough} from "./PizzaDough.ts";
 
 
-export interface IPizza {
+export interface Pizza {
     id: string,
     name: string,
-    ingredients: IPizzaIngredient[],
-    toppings: IPizzaIngredient[],
+    ingredients: PizzaIngredient[],
+    toppings: PizzaIngredient[],
     description: string,
-    sizes: IPizzaSize[],
-    doughs: IPizzaDough[],
+    sizes: PizzaSize[],
+    doughs: PizzaDough[],
     calories: number,
     protein: string,
     totalFat: string,

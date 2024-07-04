@@ -1,19 +1,17 @@
-import {FC, ButtonHTMLAttributes, ReactNode, CSSProperties} from 'react';
+import {FC, CSSProperties, ComponentProps} from 'react';
 import styles from './button.module.scss';
 import {Typography} from "../index.ts";
+import {getClassname} from "../../helpers";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ComponentProps<"button"> {
     variant: 'primary' | 'secondary';
-    children: ReactNode;
+    children: any;
     style?: CSSProperties
 }
 
-const Button: FC<ButtonProps> = ({ variant, children, style }) => {
-    return (
-        <button className={`${styles.button} ${styles[variant]}`} style={style}>
-            <Typography variant={"p"}>{children}</Typography>
+export const Button: FC<ButtonProps> = ({className, variant = 'secondary', children, style, ...props}) =>
+    (
+        <button className={getClassname([styles.button, styles[variant], className || ""])} style={style} {...props}>
+            <Typography variant="p">{children}</Typography>
         </button>
     );
-};
-
-export default Button;

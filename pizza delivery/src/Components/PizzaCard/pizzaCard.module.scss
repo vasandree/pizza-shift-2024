@@ -1,6 +1,6 @@
 @import '../../globals.scss';
 
-.pizzaCard {
+.pizza_card {
   display: flex;
   flex-direction: column;
   background-color: transparent;
@@ -53,11 +53,13 @@
 
     &__price {
       font-size: 1.25rem;
-      font-weight: bold;
       display: block;
       margin-bottom: 1rem;
       margin-top: auto;
     }
 
+    &__btn{
+      width: 100%
+    }
   }
 }

@@ -1,6 +1,6 @@
 import {DoughsType} from "./Enums";
 
-export interface IPizzaDough {
+export interface PizzaDough {
     name: DoughsType,
     price: number
 }

@@ -1,28 +1,22 @@
-import { CSSProperties, FC, ReactNode } from 'react';
+import {CSSProperties, FC} from 'react';
 import styles from './typography.module.scss';
+import {getClassname} from "../../helpers";
 
 interface TypographyProps {
     variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
-    bold?: boolean;
-    italic?: boolean;
+    type?: "secondary" | "success" | "strong" | "warning" | "danger" | "italic" | "link";
     className?: string;
     style?: CSSProperties;
-    children: ReactNode;
+    children: any;
 }
 
-const Typography: FC<TypographyProps> = ({ variant, bold, italic, className, style, children }) => {
+export const Typography: FC<TypographyProps> = ({variant, type, className, style, children}) => {
     const Component = variant;
-    console.log(className)
-    const classNames = [
-        className,
-        styles.typography,
-        styles[variant],
-        bold ? styles.bold : '',
-        italic ? styles.italic : '',
-
-    ].join(' ').trim();
-
-    return <Component className={classNames} style={style}>{children}</Component>;
+    return <Component className={
+        getClassname([
+            styles.typography,
+            styles[variant],
+            type ? styles[type] : '',
+            className || '',])} style={style}>{children}
+    </Component>;
 };
-
-export default Typography;

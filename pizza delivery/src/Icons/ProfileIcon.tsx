@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-const ProfileIcon: FC = () => (
+export const ProfileIcon: FC = () => (
 
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -12,6 +12,3 @@ const ProfileIcon: FC = () => (
     </svg>
 
 )
-
-
-export default ProfileIcon

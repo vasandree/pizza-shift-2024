@@ -1,6 +1,6 @@
 import {Ingredients} from "./Enums";
 
-export interface IPizzaIngredient {
+export interface PizzaIngredient {
     name: Ingredients;
     cost: number;
     img: string

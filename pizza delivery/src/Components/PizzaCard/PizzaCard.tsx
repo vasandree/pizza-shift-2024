@@ -1,27 +1,26 @@
-import { FC } from 'react';
+import {FC} from 'react';
 import styles from './pizzaCard.module.scss';
-import { BASE_URL } from '../../Consts';
-import {IPizza} from "../../types";
+import {BASE_URL} from '../../Consts';
 import {Button, Card, Typography} from "../../UiKit";
+import {Pizza} from "../../types";
 
 interface PizzaCardProps {
-    pizza: IPizza;
+    pizza: Pizza;
 }
 
-const PizzaCard: FC<PizzaCardProps> = ({ pizza }) => {
-    return (
-        <Card className={styles.pizzaCard}>
-            <div className={styles.pizzaCard__imageContainer}>
-                <img src={`${BASE_URL}${pizza.img}`} alt={pizza.name} className={styles.pizzaCard__image} />
+export const PizzaCard: FC<PizzaCardProps> = ({pizza}) =>
+    (
+        <Card className={styles.pizza_card}>
+            <div className={styles.pizza_card__imageContainer}>
+                <img src={`${BASE_URL}${pizza.img}`} alt={pizza.name} className={styles.pizza_card__image}/>
             </div>
-            <div className={styles.pizzaCard__content}>
-                <Typography variant="h5" className={styles.pizzaCard__content__name}>{pizza.name}</Typography>
-                <Typography variant="p" className={styles.pizzaCard__content__description}>{pizza.description}</Typography>
-                <Typography variant="p" bold className={styles.pizzaCard__content__price}>от {pizza.sizes[0].price}</Typography>
-                <Button style={{width: "100%"}} variant="primary">Добавить</Button>
+            <div className={styles.pizza_card__content}>
+                <Typography variant="h5" className={styles.pizza_card__content__name}>{pizza.name}</Typography>
+                <Typography variant="p"
+                            className={styles.pizza_card__content__description}>{pizza.description}</Typography>
+                <Typography variant="p" type="strong"
+                            className={styles.pizza_card__content__price}>от {pizza.sizes[0].price}</Typography>
+                <Button className={styles.pizza_card__btn} variant="primary">Добавить</Button>
             </div>
         </Card>
     );
-};
-
-export default PizzaCard;

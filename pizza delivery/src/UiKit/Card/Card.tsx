@@ -1,5 +1,6 @@
-import { CSSProperties, FC, ReactNode } from 'react';
+import {CSSProperties, FC, ReactNode} from 'react';
 import styles from '../Card/card.module.scss';
+import {getClassname} from "../../helpers";
 
 interface CardProps {
     className?: string;
@@ -7,14 +8,9 @@ interface CardProps {
     children: ReactNode;
 }
 
-const Card: FC<CardProps> = ({ className, style, children }) => {
-    const classNames = [className || '', styles.card].join(' ').trim();
-
-    return (
-        <div className={classNames} style={style}>
+export const Card: FC<CardProps> = ({className, style, children}) =>
+    (
+        <div className={getClassname([className || '', styles.card])} style={style}>
             {children}
         </div>
     );
-};
-
-export default Card;

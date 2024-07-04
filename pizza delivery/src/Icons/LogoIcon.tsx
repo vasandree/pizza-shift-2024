@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-const LogoIcon: FC = () =>
+export const LogoIcon: FC = () =>
     (
         <svg width="102" height="40" viewBox="0 0 102 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -12,5 +12,3 @@ const LogoIcon: FC = () =>
             <circle cx="60.5" cy="20.929" r="15.5" fill="#F4511E"/>
         </svg>
     )
-
-export default LogoIcon

@@ -1,13 +1,40 @@
+@import '../../globals';
+
 .typography {
   margin: 0;
   padding: 0;
 
-  &.bold {
+  &.strong {
     font-weight: bold;
   }
 
   &.italic {
     font-style: italic;
+  }
+
+  &.secondary{
+    color: $secondary-text-color;
+  }
+
+  &.success{
+    color: $success-color;
+  }
+
+  &.warning{
+    color: $warning-color;
+  }
+
+  &.danger{
+    color: $danger-color;
+  }
+
+  &.link{
+    color: $link-color;
+
+    &.hover{
+      color: lighten($link-color, 10%);
+    }
+
   }
 
   &.h1 {

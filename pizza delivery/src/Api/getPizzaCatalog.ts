@@ -1,19 +1,9 @@
 import axiosInstance from "./axiosInstance.ts";
+import {Pizza} from "../types";
 
 export const getPizzaCatalog = async () => {
-    try{
-        let response = await axiosInstance.get("/pizza/catalog");
 
-        console.log(response.data);
-
-        if(response.data.success) {
-            return response.data.catalog;
-        }
-        else{
-            console.error(response.data.reason);
-        }
-    }
-    catch(error){
-        console.error(error);
-    }
+    const response = await axiosInstance.get("/pizza/catalog");
+    const data : Pizza[] =  response.data.catalog;
+    return data;
 }
