@@ -17,7 +17,7 @@ const PizzaModal: FC<PizzaModalProps> = ({ pizza, isOpen, onClose }) => {
                     <img src={getImage(pizza.img)} alt={pizza.name} className={styles.pizzaModal__image} />
                 </div>
                 <div className={styles.pizzaModal__content}>
-                    <Typography variant={"h2"} className={styles.pizzaModal__name}>{pizza.name}</Typography>
+                    <Typography variant={"h4"} className={styles.pizzaModal__name}>{pizza.name}</Typography>
                     <Typography variant={"p"} className={styles.pizzaModal__description}>{pizza.description}</Typography>
                     <Typography variant={"p"} className={styles.pizzaModal__price}>от {pizza.sizes[0].price}</Typography>
                 </div>

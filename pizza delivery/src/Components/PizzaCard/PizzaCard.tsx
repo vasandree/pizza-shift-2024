@@ -21,7 +21,7 @@ const PizzaCard: FC<PizzaCardProps> = ({ pizza }) => {
                 <div className={styles.pizzaCard__content}>
                     <Typography variant="h5" className={styles.pizzaCard__content__name}>{pizza.name}</Typography>
                     <Typography variant="p" className={styles.pizzaCard__content__description}>{pizza.description}</Typography>
-                    <Typography variant="p" bold className={styles.pizzaCard__content__price}>от {pizza.sizes[0].price}</Typography>
+                    <Typography variant="p" bold className={styles.pizzaCard__content__price}>от {pizza.sizes[0].price}₽</Typography>
                     <Button style={{width: "100%"}} variant="primary" onClick={()=> setIsOpen(true)}>Добавить</Button>
                 </div>
             </Card>
