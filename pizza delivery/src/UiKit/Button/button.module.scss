@@ -11,6 +11,7 @@
   &.primary {
     background-color: $primary-color;
     color: $light-color;
+    font-family: $font-family-sans-serif;
 
     &:hover {
       background-color: darken($primary-color, 10%);

@@ -1,7 +1,7 @@
 import {Sizes} from "./Enums";
 
 export interface IPizzaSize {
-    size: Sizes,
+    name: Sizes,
     price: number
 }
 

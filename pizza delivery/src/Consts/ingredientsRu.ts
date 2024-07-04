@@ -14,7 +14,7 @@ export const ingredientsRu = {
     [Ingredients.ONION]: "Лук",
     [Ingredients.PARMESAN]: "Пармезан",
     [Ingredients.PEPERONI]: "Пепперони",
-    [Ingredients.PICKLE]: "Малосольные огурцы",
+    [Ingredients.PICKLE]: "Огурцы",
     [Ingredients.PINEAPPLE]: "Ананасы",
     [Ingredients.SHRIMPS]: "Креветки",
     [Ingredients.TOMATO]: "Помиодры",

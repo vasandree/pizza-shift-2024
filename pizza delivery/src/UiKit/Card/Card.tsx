@@ -5,13 +5,14 @@ interface CardProps {
     className?: string;
     style?: CSSProperties;
     children: ReactNode;
+    onClick?: () => void
 }
 
-const Card: FC<CardProps> = ({ className, style, children }) => {
+const Card: FC<CardProps> = ({ className, style, children, ...props }) => {
     const classNames = [className || '', styles.card].join(' ').trim();
 
     return (
-        <div className={classNames} style={style}>
+        <div className={classNames} style={style} {...props}>
             {children}
         </div>
     );

@@ -1,35 +1,26 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './modal.module.scss';
-import {CrossIcon} from "../../Icons";
+import { CrossIcon } from '../../Icons';
 
 export interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     className?: string;
-    children?: any;
+    children?: React.ReactNode;
 }
 
 export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) => {
-    const [isVisible, setIsVisible] = useState(isOpen);
-
-    //todo: make this with function
-    const classNames = [
-        styles.modalOverlay,
-        isOpen ? styles.open : '',
-        className || ""
-    ].join(' ').trim()
-
-
     useEffect(() => {
         if (isOpen) {
-            setIsVisible(true);
+            document.body.style.overflow = 'hidden';
+
         } else {
-            const timer = setTimeout(() => setIsVisible(false), 200);
-            return () => clearTimeout(timer);
+            document.body.style.overflow = '';
+
         }
     }, [isOpen]);
 
-    if (!isVisible) return null;
+    if (!isOpen) return null;
 
     const handleClose = (e: React.MouseEvent) => {
         if (e.target === e.currentTarget) {
@@ -38,14 +29,13 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) 
     };
 
     return (
-        <div className={classNames} onClick={handleClose}>
-            <div className={`${styles.modalContent} ${isOpen ? styles.open : ''}`}>
+        <div className={`${styles.modalOverlay} ${isOpen ? styles.open : ''}`} onClick={handleClose}>
+            <div className={`${styles.modalContent} ${isOpen ? styles.open : ''} ${className || ''}`}>
                 <button className={styles.closeButton} onClick={onClose}>
-                   <CrossIcon/>
+                    <CrossIcon />
                 </button>
                 {children}
             </div>
         </div>
     );
 };
-
