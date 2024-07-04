@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styles from './modal.module.scss';
 import {CrossIcon} from "../../Icons";
 
@@ -6,23 +6,25 @@ export interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     className?: string;
-    children?: ReactNode;
+    children?: any;
 }
 
-const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) => {
+export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) => {
     const [isVisible, setIsVisible] = useState(isOpen);
 
+    //todo: make this with function
     const classNames = [
         styles.modalOverlay,
         isOpen ? styles.open : '',
         className || ""
     ].join(' ').trim()
 
+
     useEffect(() => {
         if (isOpen) {
             setIsVisible(true);
         } else {
-            const timer = setTimeout(() => setIsVisible(false), 300);
+            const timer = setTimeout(() => setIsVisible(false), 200);
             return () => clearTimeout(timer);
         }
     }, [isOpen]);
@@ -47,4 +49,3 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) => {
     );
 };
 
-export default Modal;
