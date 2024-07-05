@@ -1,10 +1,12 @@
 import {FC, useEffect, useState} from 'react';
 import styles from './pizzaModal.module.scss';
 import {calculateTotalPizzaPrice, getImage} from '../../Helpers';
-import {Button, Modal, ModalProps, Tabs, Typography} from '../../UiKit';
+import {Button, Modal, ModalProps, Tabs, Tooltip, Typography} from '../../UiKit';
 import {IPizza, IPizzaIngredient} from '../../types';
 import {doughsRu, ingredientsRu, sizesCm, sizesRu} from '../../Consts';
 import {IngredientCard} from '../IngredientCard/IngredientCard';
+import {TooltipContent} from "../TooltipContent/TooltipContent.tsx";
+import {InfoIcon} from "../../Icons";
 
 interface PizzaModalProps extends ModalProps {
     pizza: IPizza;
@@ -99,9 +101,15 @@ export const PizzaModal: FC<PizzaModalProps> = ({pizza, isOpen, onClose}) => {
                     <img src={getImage(pizza.img)} alt={pizza.name} className={styles.pizza_modal__image}/>
                 </div>
                 <div className={styles.pizza_modal__content}>
-                    <Typography variant="h4" className={styles.pizza_modal__name}>
-                        {pizza.name}
-                    </Typography>
+                    <div className={styles.pizza_modal__header}>
+                        <Typography variant="h4" className={styles.pizza_modal__name}>
+                            {pizza.name}
+                        </Typography>
+                        <Tooltip className={styles.pizza_modal__tooltip}
+                                 content={<TooltipContent allergens={pizza.allergens} totalFat={pizza.totalFat}
+                                                          carbohydrates={pizza.carbohydrates} calories={pizza.calories}
+                                                          protein={pizza.protein}/>}><InfoIcon/></Tooltip>
+                    </div>
                     <Typography variant="p" className={styles.pizza_modal__text}>
                         {sizesRu[currentSize]}, {sizesCm[currentSize]}, {doughsRu[currentDough]}
                     </Typography>

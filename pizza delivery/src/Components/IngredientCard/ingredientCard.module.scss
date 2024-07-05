@@ -11,12 +11,20 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 
   &.selected {
     border: 1px solid $primary-color;
     padding: 9px;
   }
 
+  &__icon {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: none;
+    font-size: 1.5rem;
+  }
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -50,3 +58,4 @@
     text-align: center;
   }
 }
+
