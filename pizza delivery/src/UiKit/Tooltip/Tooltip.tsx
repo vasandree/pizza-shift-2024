@@ -1,5 +1,5 @@
-import { FC, ReactNode, useState } from 'react';
-import styles from '../Tooltip/tooltip.module.scss';
+import {FC, ReactNode, useState} from 'react';
+import styles from './tooltip.module.scss';
 
 interface TooltipProps {
     content?: ReactNode;
@@ -7,7 +7,7 @@ interface TooltipProps {
     className?: string;
 }
 
-export const Tooltip: FC<TooltipProps> = ({ content, children, className }) => {
+export const Tooltip: FC<TooltipProps> = ({content, children, className}) => {
     const [visible, setVisible] = useState(false);
 
     return (

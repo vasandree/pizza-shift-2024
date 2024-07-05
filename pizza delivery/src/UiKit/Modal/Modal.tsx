@@ -13,14 +13,10 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) 
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
-
         } else {
             document.body.style.overflow = '';
-
         }
     }, [isOpen]);
-
-    if (!isOpen) return null;
 
     const handleClose = (e: React.MouseEvent) => {
         if (e.target === e.currentTarget) {
