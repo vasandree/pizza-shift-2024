@@ -1,6 +1,6 @@
 import {CSSProperties, FC} from 'react';
 import styles from './typography.module.scss';
-import {getClassname} from "../../helpers";
+import {getClassName} from "../../helpers";
 
 interface TypographyProps {
     variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
@@ -13,7 +13,7 @@ interface TypographyProps {
 export const Typography: FC<TypographyProps> = ({variant, type, className, style, children}) => {
     const Component = variant;
     return <Component className={
-        getClassname([
+        getClassName([
             styles.typography,
             styles[variant],
             type ? styles[type] : '',

@@ -1,6 +1,6 @@
 import {CSSProperties, FC, ReactNode} from 'react';
 import styles from '../Card/card.module.scss';
-import {getClassname} from "../../helpers";
+import {getClassName} from "../../helpers";
 
 interface CardProps {
     className?: string;
@@ -10,7 +10,7 @@ interface CardProps {
 
 export const Card: FC<CardProps> = ({className, style, children}) =>
     (
-        <div className={getClassname([className || '', styles.card])} style={style}>
+        <div className={getClassName([className || '', styles.card])} style={style}>
             {children}
         </div>
     );

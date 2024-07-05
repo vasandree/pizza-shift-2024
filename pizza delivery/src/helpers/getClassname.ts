@@ -1,3 +1,3 @@
-export const getClassname = (classnames: string[]) => {
+export const getClassName = (classnames: string[]) => {
     return classnames.join(' ').trim();
 }
