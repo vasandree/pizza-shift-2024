@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from 'react';
 import styles from './pizzaModal.module.scss';
-import {calculateTotalPizzaPrice, getImage} from '../../Helpers';
+import {addPizzaToCart, calculateTotalPizzaPrice, getImage} from '../../Helpers';
 import {Button, Modal, ModalProps, Tabs, Tooltip, Typography} from '../../UiKit';
 import {IPizza, IPizzaIngredient} from '../../types';
 import {doughsRu, ingredientsRu, sizesCm, sizesRu} from '../../Consts';
@@ -137,7 +137,12 @@ export const PizzaModal: FC<PizzaModalProps> = ({pizza, isOpen, onClose}) => {
                     <Button
                         variant="primary"
                         onClick={() => {
-                            console.log('Selected Ingredients:', selectedIngredients);
+                            addPizzaToCart({
+                                pizza,
+                                toppings: selectedIngredients,
+                                dough: currentDough,
+                                size: currentSize
+                            });
                         }}
                     >
                         Добавить в корзину за {currentPrice}₽
@@ -147,4 +152,3 @@ export const PizzaModal: FC<PizzaModalProps> = ({pizza, isOpen, onClose}) => {
         </Modal>
     );
 };
-
