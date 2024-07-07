@@ -6,6 +6,7 @@ interface CardProps {
     className?: string;
     style?: CSSProperties;
     children: ReactNode;
+    onClick?: () => void
 }
 
 export const Card: FC<CardProps> = ({className, style, children}) =>

@@ -1,2 +1,5 @@
 export * from "./Header/Header"
 export * from "./PizzaCard/PizzaCard"
+export * from "./PizzaModal/PizzaModal"
+export * from "./IngredientCard/IngredientCard"
+export * from "./TooltipContent/TooltipContent"

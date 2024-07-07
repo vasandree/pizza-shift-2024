@@ -1,3 +1,4 @@
 export enum DoughsType {
-    "THIN", "THICK"
+    THIN = "THIN",
+    THICK = "THICK"
 }
