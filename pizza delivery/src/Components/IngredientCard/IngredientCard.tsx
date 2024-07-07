@@ -1,13 +1,13 @@
 import  { FC, useState } from 'react';
 import {Card, Typography} from '../../UiKit';
-import { getImage } from '../../Helpers';
-import { IPizzaIngredient } from '../../types';
 import { ingredientsRu } from '../../Consts';
 import styles from '../IngredientCard/ingredientCard.module.scss';
 import {ChosenIcon} from "../../Icons";
+import {PizzaIngredient} from "../../types";
+import {getImage} from "../../helpers";
 
 interface IngredientCardProps {
-    ingredient: IPizzaIngredient;
+    ingredient: PizzaIngredient;
     onClick: () => void;
 }
 

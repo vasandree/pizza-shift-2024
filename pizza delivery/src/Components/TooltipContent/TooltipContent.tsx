@@ -1,6 +1,6 @@
 import styles from "../TooltipContent/tooltipContent.module.scss";
-import { FC } from "react";
-import { Typography } from "../../UiKit";
+import {FC} from "react";
+import {Typography} from "../../UiKit";
 
 interface TooltipContentProps {
     calories: number;
@@ -10,16 +10,8 @@ interface TooltipContentProps {
     allergens: string[];
 }
 
-export const TooltipContent: FC<TooltipContentProps> = ({ calories, carbohydrates, protein, totalFat, allergens }) => (
+export const TooltipContent: FC<TooltipContentProps> = ({calories, carbohydrates, protein, totalFat, allergens}) => (
     <div className={styles.tooltip_content}>
-        <Typography variant="p" className={styles.tooltip_content__allergens}>
-            Аллергены: {allergens.map((allergen, index) => (
-            <span key={index}>
-                    {allergen}
-                {index < allergens.length - 1 ? ', ' : ''}
-                </span>
-        ))}
-        </Typography>
         <div className={styles.tooltip_header}>Пищевая ценность на 100 г</div>
         <div className={styles.tooltip_content__text}>
             <span>Энерг. ценность</span>
@@ -37,5 +29,13 @@ export const TooltipContent: FC<TooltipContentProps> = ({ calories, carbohydrate
             <span>Углеводы</span>
             <span>{carbohydrates}</span>
         </div>
+        <Typography type="danger" variant="p" className={styles.tooltip_content__allergens}>
+            Аллергены: {allergens.map((allergen, index) => (
+            <span key={index}>
+                    {allergen}
+                {index < allergens.length - 1 ? ', ' : ''}
+                </span>
+        ))}
+        </Typography>
     </div>
 );

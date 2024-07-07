@@ -1,4 +1,4 @@
-import {CSSProperties, FC} from 'react';
+import {CSSProperties, FC, ReactNode} from 'react';
 import styles from './typography.module.scss';
 import {getClassName} from "../../helpers";
 
@@ -7,7 +7,7 @@ interface TypographyProps {
     type?: "secondary" | "success" | "strong" | "warning" | "danger" | "italic" | "link";
     className?: string;
     style?: CSSProperties;
-    children: any;
+    children: ReactNode;
 }
 
 export const Typography: FC<TypographyProps> = ({variant, type, className, style, children}) => {

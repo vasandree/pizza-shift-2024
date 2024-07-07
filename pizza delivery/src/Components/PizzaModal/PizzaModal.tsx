@@ -1,22 +1,22 @@
 import {FC, useEffect, useState} from 'react';
 import styles from './pizzaModal.module.scss';
-import {addPizzaToCart, calculateTotalPizzaPrice, getImage} from '../../Helpers';
 import {Button, Modal, ModalProps, Tabs, Tooltip, Typography} from '../../UiKit';
-import {IPizza, IPizzaIngredient} from '../../types';
 import {doughsRu, ingredientsRu, sizesCm, sizesRu} from '../../Consts';
 import {IngredientCard} from '../IngredientCard/IngredientCard';
 import {TooltipContent} from "../TooltipContent/TooltipContent.tsx";
 import {InfoIcon} from "../../Icons";
+import {DoughsType, Pizza, PizzaIngredient, Sizes} from "../../types";
+import {addPizzaToCart, calculateTotalPizzaPrice, getImage} from "../../helpers";
 
 interface PizzaModalProps extends ModalProps {
-    pizza: IPizza;
+    pizza: Pizza;
 }
 
 export const PizzaModal: FC<PizzaModalProps> = ({pizza, isOpen, onClose}) => {
     const [currentSize, setCurrentSize] = useState(pizza.sizes[0].name);
     const [currentDough, setCurrentDough] = useState(pizza.doughs[0].name);
     const [currentPrice, setCurrentPrice] = useState(pizza.sizes[0].price);
-    const [selectedIngredients, setSelectedIngredients] = useState<IPizzaIngredient[]>([]);
+    const [selectedIngredients, setSelectedIngredients] = useState<PizzaIngredient[]>([]);
 
     useEffect(() => {
         if (!isOpen) {
@@ -27,7 +27,7 @@ export const PizzaModal: FC<PizzaModalProps> = ({pizza, isOpen, onClose}) => {
         }
     }, [isOpen, pizza]);
 
-    const handleSizeChange = (value: any) => {
+    const handleSizeChange = (value: Sizes) => {
         setCurrentSize(value);
         setCurrentPrice(
             calculateTotalPizzaPrice({
@@ -40,7 +40,7 @@ export const PizzaModal: FC<PizzaModalProps> = ({pizza, isOpen, onClose}) => {
         );
     };
 
-    const handleDoughChange = (value: any) => {
+    const handleDoughChange = (value: DoughsType) => {
         setCurrentDough(value);
         setCurrentPrice(
             calculateTotalPizzaPrice({
@@ -53,7 +53,7 @@ export const PizzaModal: FC<PizzaModalProps> = ({pizza, isOpen, onClose}) => {
         );
     };
 
-    const handleIngredientClick = (ingredient: IPizzaIngredient) => {
+    const handleIngredientClick = (ingredient: PizzaIngredient) => {
         const isSelected = selectedIngredients.some((selected) => selected.name === ingredient.name);
         if (isSelected) {
             setSelectedIngredients(selectedIngredients.filter((selected) => selected.name !== ingredient.name));

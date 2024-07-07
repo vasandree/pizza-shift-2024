@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import styles from './modal.module.scss';
-import { CrossIcon } from '../../Icons';
+import {CrossIcon} from "../../Icons";
 
 export interface ModalProps {
     isOpen: boolean;

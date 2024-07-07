@@ -4,6 +4,6 @@ export * from './TimerIcon';
 export * from './CartIcon';
 export * from './ExitIcon';
 export * from './EnterIcon';
-export * from './CrossIcon';
-export * from "../Icons/InfoIcon"
-export * from "../Icons/ChosenIcon"
+export * from "./CrossIcon"
+export * from "./InfoIcon"
+export * from "./ChosenIcon"

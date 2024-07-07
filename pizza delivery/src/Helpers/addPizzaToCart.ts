@@ -1,12 +1,12 @@
-import {IPizza, IPizzaIngredient} from "../types";
+import { Pizza, PizzaIngredient } from '../types';
 
 interface AddPizzaToCartProps {
-    pizza: IPizza;
-    toppings: IPizzaIngredient[];
-    dough: string;
-    size: string;
+  pizza: Pizza;
+  toppings: PizzaIngredient[];
+  dough: string;
+  size: string;
 }
 
-export const addPizzaToCart = ({pizza, toppings, dough, size}:AddPizzaToCartProps) =>{
-    //implement logic
-}
+export const addPizzaToCart = ({ pizza, toppings, dough, size }: AddPizzaToCartProps) => {
+  //implement logic
+};
