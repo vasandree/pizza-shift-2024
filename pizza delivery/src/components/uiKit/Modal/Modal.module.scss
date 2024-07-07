@@ -1,6 +1,6 @@
-@import '../../../globals';
+@import '../../../styles/mixins';
 
-.modalOverlay {
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -16,12 +16,12 @@
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.modalOverlay.open {
+.overlay.open {
   opacity: 1;
   visibility: visible;
 }
 
-.modalContent {
+.content {
   background-color: $light-color;
   padding: 2rem;
   border-radius: 12px;
@@ -35,7 +35,7 @@
   will-change: transform, opacity;
 }
 
-.modalContent.open {
+.content.open {
   transform: translateY(0);
   opacity: 1;
 }

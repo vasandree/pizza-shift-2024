@@ -1,42 +1,73 @@
-import React, {useState} from 'react';
-import styles from './tabs.module.scss';
-import {Typography} from "../index.ts";
+import React, { FC, useState, ReactElement, useEffect, ReactNode } from 'react';
+import styles from './Tabs.module.scss';
+import clsx from "clsx";
 
-interface Tab {
+interface TabsItemProps {
     label: string;
     value: any;
-    className?: string
-    activeClassName?: string;
+    className?: string;
+    children?: ReactNode;
 }
 
+export const TabsItem: FC<TabsItemProps> = ({ children }) => {
+    return <>{children}</>;
+};
+
 interface TabsProps {
-    tabs: Tab[];
+    children: ReactElement<TabsItemProps>[];
     onChange?: (value: any) => void;
-    selected?: number;
+    selected?: any;
     className?: string;
 }
 
-export const Tabs: React.FC<TabsProps> = ({tabs, selected = 0, onChange, className}) => {
-    const [selectedTab, setSelectedTab] = useState(tabs[selected].value);
+const TabsComponent: FC<TabsProps> = ({ children, selected, onChange, className }) => {
+    const [selectedItem, setSelectedItem] = useState<any>(selected ?? children[0].props.value);
 
-    const handleTabClick = (value: any) => {
-        setSelectedTab(value);
-        onChange && onChange(value) ;
+    useEffect(() => {
+        if (selected !== undefined && selected !== null) {
+            setSelectedItem(selected);
+        }
+    }, [selected]);
 
+    const handleItemClick = (value: any) => {
+        setSelectedItem(value);
+        if (onChange) {
+            onChange(value);
+        }
     };
 
     return (
-        <div className={`${styles.tabs} ${className}`}>
-            {tabs.map((tab) => (
-                <button
-                    key={tab.value}
-                    className={`${styles.tab}  ${tab.value === selectedTab ? styles.active : ''}
-                     ${tab.className} ${tab.value === selectedTab && tab.activeClassName ? tab.activeClassName : ''}`} // не знаю как пофиксить, помогите пж
-                    onClick={() => handleTabClick(tab.value)}
-                >
-                    <Typography variant="p">{tab.label}</Typography>
-                </button>
-            ))}
+        <div className={className}>
+            <div className={styles.tabs}>
+                {React.Children.map(children, (child) => {
+                    const { label, value, className } = child.props;
+                    const isActive = value === selectedItem;
+
+                    return (
+                        <div
+                            key={value}
+                            className={clsx(styles.item, isActive && styles.active, className)}
+                            onClick={() => handleItemClick(value)}
+                        >
+                            <p>{label}</p>
+                        </div>
+                    );
+                })}
+            </div>
+            <div>
+                {React.Children.map(children, (child) => {
+                    return child.props.value === selectedItem ? child : null;
+                })}
+            </div>
         </div>
     );
 };
+
+interface TabsComponentType extends FC<TabsProps> {
+    Item: FC<TabsItemProps>;
+}
+
+const Tabs = TabsComponent as TabsComponentType;
+Tabs.Item = TabsItem;
+
+export { Tabs };

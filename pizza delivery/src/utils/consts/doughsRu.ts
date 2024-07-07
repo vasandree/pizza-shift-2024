@@ -1,6 +1,6 @@
-import {DoughsType} from "../../types";
+import {Dough} from "../../types";
 
-export const doughsRu = {
-    [DoughsType.THIN]: "Традиционное тесто",
-    [DoughsType.THICK]: "Толстое тесто"
+export const doughsRu: Record<Dough, string> = {
+    THIN: "Традиционное тесто",
+    THICK: "Толстое тесто"
 };

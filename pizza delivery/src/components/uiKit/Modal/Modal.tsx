@@ -1,34 +1,30 @@
-import React, { FC, useEffect } from 'react';
-import styles from './modal.module.scss';
+import {FC, ReactNode, MouseEvent} from 'react';
+import styles from './Modal.module.scss';
 import {CrossIcon} from "../Icons";
+import {clsx} from "clsx";
+import {useHiddenScroll} from "../../../utils/hooks";
 
 export interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     className?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 
-export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) => {
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-    }, [isOpen]);
+export const Modal: FC<ModalProps> = ({isOpen, onClose, children, className}) => {
+    useHiddenScroll(isOpen)
 
-    const handleClose = (e: React.MouseEvent) => {
+    const handleClose = (e: MouseEvent) => {
         if (e.target === e.currentTarget) {
             onClose();
         }
     };
 
     return (
-        <div className={`${styles.modalOverlay} ${isOpen ? styles.open : ''}`} onClick={handleClose}>
-            <div className={`${styles.modalContent} ${isOpen ? styles.open : ''} ${className || ''}`}>
+        <div className={clsx(styles.overlay, isOpen ? styles.open : '')} onClick={handleClose}>
+            <div className={clsx(styles.content,className, isOpen ? styles.open : '')}>
                 <button className={styles.closeButton} onClick={onClose}>
-                    <CrossIcon />
+                    <CrossIcon/>
                 </button>
                 {children}
             </div>

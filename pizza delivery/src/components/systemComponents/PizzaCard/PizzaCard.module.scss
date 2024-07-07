@@ -1,4 +1,4 @@
-@import '../../../globals';
+@import '../../../styles/mixins';
 
 .pizza_card {
   display: flex;
@@ -18,7 +18,7 @@
     transition: box-shadow 0.2s ease;
   }
 
-  &__imageContainer {
+  .image_container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,38 +27,38 @@
     background-color: transparent;
   }
 
-  &__image {
+  .image {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
     mix-blend-mode: multiply;
   }
 
-  &__content {
+  .content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem;
     flex-grow: 1;
 
-    &__name {
+    .name {
       color: $primary-text-color;
       margin: 0 0 0.5rem 0;
     }
 
-    &__description {
+    .description {
       color: $secondary-text-color;
       margin: 0 0 1rem 0;
     }
 
-    &__price {
+    .price {
       font-size: 1.25rem;
       display: block;
       margin-bottom: 1rem;
       margin-top: auto;
     }
 
-    &__btn{
+    .btn{
       width: 100%
     }
   }

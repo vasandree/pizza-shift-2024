@@ -1,5 +1,6 @@
 import {FC, ReactNode, useState} from 'react';
 import styles from './tooltip.module.scss';
+import {clsx} from "clsx";
 
 interface TooltipProps {
     content?: ReactNode;
@@ -12,12 +13,12 @@ export const Tooltip: FC<TooltipProps> = ({content, children, className}) => {
 
     return (
         <div
-            className={`${styles.tooltip_container} ${className}`}
+            className={styles.tooltip_container}
             onMouseEnter={() => setVisible(true)}
             onMouseLeave={() => setVisible(false)}
         >
             {children}
-            {visible && <div className={styles.tooltip}>{content}</div>}
+            {visible && <div className={clsx(styles.tooltip, className)}>{content}</div>}
         </div>
     );
 };

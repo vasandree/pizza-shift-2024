@@ -1,7 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
-import Layout from "./Layout.tsx";
 import {routes} from "../utils/consts";
 import {MainPage} from "../pages";
+import {Layout} from "./Layout.tsx";
 
 export const Router = createBrowserRouter([{
         path: "/",

@@ -1,4 +1,4 @@
-@import '../../../globals';
+@import '../../../styles/mixins';
 
 .header {
   background-color: $light-color;
@@ -6,7 +6,7 @@
   font-family: $font-family-sans-serif;
   padding: 1rem 2rem;
 
-  &__container {
+  .container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -14,7 +14,7 @@
     align-items: center;
   }
 
-  &__logo {
+  .logo {
     margin-right: 1rem;
 
     img {
@@ -26,14 +26,14 @@
     }
   }
 
-  &__nav {
+  .nav {
     display: flex;
     gap: 1.5rem;
     flex-grow: 1;
     justify-content: space-between;
   }
 
-  &__nav_item {
+  .nav_item {
     display: flex;
     align-items: center;
     color: $dark-color;

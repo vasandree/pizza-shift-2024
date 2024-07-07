@@ -1,20 +1,19 @@
-export enum Ingredients {
-    PINEAPPLE = "PINEAPPLE",
-    MOZZARELLA = "MOZZARELLA",
-    PEPERONI = "PEPERONI",
-    GREEN_PEPPER = "GREEN_PEPPER",
-    MUSHROOMS = "MUSHROOMS",
-    BASIL = "BASIL",
-    CHEDDAR = "CHEDDAR",
-    PARMESAN = "PARMESAN",
-    FETA = "FETA",
-    HAM = "HAM",
-    PICKLE = "PICKLE",
-    TOMATO = "TOMATO",
-    BACON = "BACON",
-    ONION = "ONION",
-    CHILE = "CHILE",
-    SHRIMPS = "SHRIMPS",
-    CHICKEN_FILLET = "CHICKEN_FILLET",
-    MEATBALLS = "MEATBALLS"
-}
+export type Ingredients =
+    | 'PINEAPPLE'
+    | 'MOZZARELLA'
+    | 'PEPERONI'
+    | 'GREEN_PEPPER'
+    | 'MUSHROOMS'
+    | 'BASIL'
+    | 'CHEDDAR'
+    | 'PARMESAN'
+    | 'FETA'
+    | 'HAM'
+    | 'PICKLE'
+    | 'TOMATO'
+    | 'BACON'
+    | 'ONION'
+    | 'CHILE'
+    | 'SHRIMPS'
+    | 'CHICKEN_FILLET'
+    | 'MEATBALLS';

@@ -1,5 +1,1 @@
-export enum Sizes {
-    SMALL = "SMALL",
-    MEDIUM = "MEDIUM",
-    LARGE = "LARGE"
-}
+export type Size = "SMALL" | "MEDIUM" | "LARGE"

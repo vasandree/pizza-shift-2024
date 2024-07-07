@@ -1,7 +1,7 @@
 import  { FC, useState } from 'react';
 import {Card, ChosenIcon, Typography} from '../../uiKit';
 import { ingredientsRu } from '../../../utils/consts';
-import styles from './ingredientCard.module.scss';
+import styles from './IngredientCard.module.scss';
 import {PizzaIngredient} from "../../../types";
 import {getImage} from "../../../utils/helpers";
 
