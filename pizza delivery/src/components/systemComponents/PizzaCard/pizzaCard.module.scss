@@ -1,0 +1,65 @@
+@import '../../../globals';
+
+.pizza_card {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  width: 300px;
+  height: 450px;
+  text-align: start;
+  padding: 5px;
+
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease;
+  }
+
+  &__imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
+    overflow: hidden;
+    background-color: transparent;
+  }
+
+  &__image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    flex-grow: 1;
+
+    &__name {
+      color: $primary-text-color;
+      margin: 0 0 0.5rem 0;
+    }
+
+    &__description {
+      color: $secondary-text-color;
+      margin: 0 0 1rem 0;
+    }
+
+    &__price {
+      font-size: 1.25rem;
+      display: block;
+      margin-bottom: 1rem;
+      margin-top: auto;
+    }
+
+    &__btn{
+      width: 100%
+    }
+  }
+}
