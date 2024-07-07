@@ -1,4 +1,4 @@
-import {PizzaDough, PizzaIngredient, PizzaSize} from "../../types";
+import {PizzaDough, PizzaIngredient, PizzaSize} from "../types";
 
 interface Props {
     currentSize: PizzaSize;

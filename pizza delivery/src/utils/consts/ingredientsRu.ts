@@ -1,4 +1,4 @@
-import {Ingredients} from "../../types";
+import {Ingredients} from "../types";
 
 export const ingredientsRu:Record<Ingredients, string> = {
     BACON: "Бекон",

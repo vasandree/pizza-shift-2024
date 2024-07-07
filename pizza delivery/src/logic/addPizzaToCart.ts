@@ -1,4 +1,4 @@
-import { Pizza, PizzaIngredient } from '../../types';
+import { Pizza, PizzaIngredient } from '../utils/types';
 
 interface AddPizzaToCartParams {
   pizza: Pizza;

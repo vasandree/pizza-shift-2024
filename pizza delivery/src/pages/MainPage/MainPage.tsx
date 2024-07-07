@@ -1,5 +1,5 @@
 import styles from './mainPage.module.scss';
-import { Pizza } from '../../types';
+import { Pizza } from '../../utils/types';
 import { useFetchPizzas } from '../../utils/hooks';
 import {Typography} from "../../components/uiKit";
 import {PizzaCard} from "../../components/systemComponents";

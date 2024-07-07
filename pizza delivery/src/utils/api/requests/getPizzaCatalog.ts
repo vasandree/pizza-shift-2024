@@ -1,4 +1,4 @@
-import {Pizza} from "../../../types";
+import {Pizza} from "../../types";
 import apiInstance from "../apiInstance.ts";
 
 export const getPizzaCatalog = async () => {

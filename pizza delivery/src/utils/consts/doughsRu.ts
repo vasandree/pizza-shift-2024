@@ -1,4 +1,4 @@
-import {Dough} from "../../types";
+import {Dough} from "../types";
 
 export const doughsRu: Record<Dough, string> = {
     THIN: "Традиционное тесто",

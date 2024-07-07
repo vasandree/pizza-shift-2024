@@ -1,6 +1,6 @@
 import  { FC, useEffect, useState } from 'react';
 import styles from './PizzaModal.module.scss';
-import { Pizza, PizzaDough, PizzaIngredient, PizzaSize } from "../../../types";
+import { Pizza, PizzaDough, PizzaIngredient, PizzaSize } from "../../../utils/types";
 import { calculateTotalPizzaPrice, getImage, getShortenDoughName } from "../../../utils/helpers";
 import { doughsRu, ingredientsRu, sizesCm, sizesRu } from "../../../utils/consts";
 import { Button, InfoIcon, Modal, ModalProps, Tabs, Tooltip, Typography } from "../../uiKit";

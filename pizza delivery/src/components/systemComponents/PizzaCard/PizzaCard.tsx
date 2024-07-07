@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import styles from './PizzaCard.module.scss';
 import { Button, Card, Typography } from '../../uiKit';
-import { Pizza } from '../../../types';
+import { Pizza } from '../../../utils/types';
 import { PizzaModal } from '../index.ts';
 import { getImage } from "../../../utils/helpers";
 

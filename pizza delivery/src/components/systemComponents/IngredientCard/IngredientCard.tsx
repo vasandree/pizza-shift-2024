@@ -2,7 +2,7 @@ import  { FC, useState } from 'react';
 import {Card, ChosenIcon, Typography} from '../../uiKit';
 import { ingredientsRu } from '../../../utils/consts';
 import styles from './IngredientCard.module.scss';
-import {PizzaIngredient} from "../../../types";
+import {PizzaIngredient} from "../../../utils/types";
 import {getImage} from "../../../utils/helpers";
 
 interface IngredientCardProps {
