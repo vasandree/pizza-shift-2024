@@ -21,9 +21,23 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["src/*"],
+      "@consts/*": ["src/utils/consts/*"],
+      "@api/*": ["src/utils/api/*"],
+      "@hooks/*": ["src/utils/hooks/*"],
+      "@types/*": ["src/utils/types/*"],
+      "@helpers/*": ["src/utils/helpers/*"],
+      "@ui/*": ["src/components/uiKit/*"],
+      "@components/*": ["src/components/systemComponents/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
