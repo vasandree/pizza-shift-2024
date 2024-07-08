@@ -1,6 +1,6 @@
 export const routes = {
-    root: () => "/",
-    orders: () => "/orders",
-    profile: () => "/profile",
-    cart: () => "/cart"
-}
+  root: () => '/',
+  orders: () => '/orders',
+  profile: () => '/profile',
+  cart: () => '/cart'
+};

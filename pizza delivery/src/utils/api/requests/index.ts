@@ -1,1 +1,1 @@
-export * from "./getPizzaCatalog"
+export * from './getPizzaCatalog';

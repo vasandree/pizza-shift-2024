@@ -1,7 +1,7 @@
-import {Size} from "../types";
+import type { Size } from '../types';
 
 export const sizesRu: Record<Size, string> = {
-    SMALL: "Маленькая",
-    MEDIUM: "Средняя",
-    LARGE: "Большая"
-}
+  SMALL: 'Маленькая',
+  MEDIUM: 'Средняя',
+  LARGE: 'Большая'
+};

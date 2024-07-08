@@ -1,8 +1,7 @@
-import {Ingredients} from "./Enums";
+import type { Ingredients } from './Enums';
 
 export interface PizzaIngredient {
-    name: Ingredients;
-    cost: number;
-    img: string
+  name: Ingredients;
+  cost: number;
+  img: string;
 }
-

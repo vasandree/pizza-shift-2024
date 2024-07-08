@@ -1,6 +1,6 @@
-import {Dough} from "./Enums";
+import type { Dough } from './Enums';
 
 export interface PizzaDough {
-    name: Dough,
-    price: number
+  name: Dough;
+  price: number;
 }

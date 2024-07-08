@@ -1,16 +1,19 @@
-import {PizzaDough, PizzaIngredient, PizzaSize} from "../types";
+import type { PizzaDough, PizzaIngredient, PizzaSize } from '../types';
 
 interface Props {
-    currentSize: PizzaSize;
-    currentDough: PizzaDough;
-    ingredients: PizzaIngredient[];
+  currentSize: PizzaSize;
+  currentDough: PizzaDough;
+  ingredients: PizzaIngredient[];
 }
 
-export const calculateTotalPizzaPrice = ({currentSize, currentDough, ingredients}: Props): number => {
+export const calculateTotalPizzaPrice = ({
+  currentSize,
+  currentDough,
+  ingredients
+}: Props): number => {
+  const ingredientsCost = ingredients.reduce((totalCost, ingredient) => {
+    return totalCost + ingredient.cost;
+  }, 0);
 
-    const ingredientsCost = ingredients.reduce((totalCost, ingredient) => {
-        return totalCost + ingredient.cost;
-    }, 0);
-
-    return currentSize.price + currentDough.price + ingredientsCost;
+  return currentSize.price + currentDough.price + ingredientsCost;
 };

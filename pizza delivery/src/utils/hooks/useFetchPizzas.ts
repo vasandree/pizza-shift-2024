@@ -1,7 +1,9 @@
-import { useFetch, FetchResult } from './useFetch.ts';
-import { Pizza } from '../types';
-import {getPizzaCatalog} from "../api";
+import { getPizzaCatalog } from '../api';
+import type { Pizza } from '../types';
+
+import type { FetchResult } from './useFetch.ts';
+import { useFetch } from './useFetch.ts';
 
 export const useFetchPizzas = (): FetchResult<Pizza[]> => {
-    return useFetch(getPizzaCatalog);
+  return useFetch(getPizzaCatalog);
 };

@@ -1,11 +1,11 @@
-import {PizzaIngredient} from './PizzaIngredient.ts';
-import {PizzaSize} from './PizzaSize.ts';
-import {PizzaDough} from './PizzaDough.ts';
+import type { PizzaDough } from './PizzaDough.ts';
+import type { PizzaIngredient } from './PizzaIngredient.ts';
+import type { PizzaSize } from './PizzaSize.ts';
 
 export interface PizzaInCart {
-    id: string;
-    name: string;
-    toppings: PizzaIngredient[];
-    size: PizzaSize;
-    doughs: PizzaDough;
+  id: string;
+  name: string;
+  toppings: PizzaIngredient[];
+  size: PizzaSize;
+  doughs: PizzaDough;
 }
