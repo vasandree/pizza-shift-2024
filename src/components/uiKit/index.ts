@@ -5,3 +5,5 @@ export * from './Modal/Modal';
 export * from './Tabs/Tabs';
 export * from './Tooltip/Tooltip';
 export * from './Typography/Typography';
+export * from './Input/Input';
+export * from './Form/Form';

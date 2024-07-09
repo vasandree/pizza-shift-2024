@@ -1,6 +1,6 @@
 import axios from 'axios';
-
 import { BASE_URL } from '../consts';
+import { BaseResponse } from '@api/types.ts';
 
 const apiInstance = axios.create({
   baseURL: BASE_URL,
@@ -9,19 +9,31 @@ const apiInstance = axios.create({
   }
 });
 
+apiInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 apiInstance.interceptors.response.use(
   (response) => {
-    if (response.data.success) {
-      console.log(response.data);
+    if ((response.data as BaseResponse).success) {
+      console.log('Response:', response.data);
     } else {
-      console.log(response);
+      console.error('Error response:', response.data.reason);
     }
     return response;
   },
   (error) => {
     console.error(error);
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('token');
+    }
     return Promise.reject(error);
   }
 );
 
-export default apiInstance;
+export { apiInstance };

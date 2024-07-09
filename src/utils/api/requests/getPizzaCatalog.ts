@@ -1,8 +1,8 @@
-import type { Pizza } from '../../types';
-import apiInstance from '../apiInstance.ts';
+import { apiInstance, PizzasResponse, RequestConfig } from '@/utils/api';
 
-export const getPizzaCatalog = async () => {
-  const response = await apiInstance.get('/pizza/catalog');
-  const data: Pizza[] = response.data.catalog;
-  return data;
+export type GetPizzaCatalogConfig = RequestConfig;
+
+export const getPizzaCatalog = async (config: GetPizzaCatalogConfig) => {
+  const response = await apiInstance.get<PizzasResponse>('/pizza/catalog', config?.config);
+  return response.data;
 };

@@ -1,8 +1,8 @@
 import type { FC, MouseEvent, ReactNode } from 'react';
 import { clsx } from 'clsx';
+import ReactDOM from 'react-dom';
 
-import { useHiddenScroll } from '@/utils/hooks';
-
+import { useHiddenScroll } from './useHiddenScroll.ts';
 import { CrossIcon } from '../Icons';
 
 import styles from './Modal.module.scss';
@@ -23,7 +23,7 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) 
     }
   };
 
-  return (
+  const modalContent = (
     <div className={clsx(styles.overlay, isOpen ? styles.open : '')} onClick={handleClose}>
       <div className={clsx(styles.content, className, isOpen ? styles.open : '')}>
         <button className={styles.closeButton} onClick={onClose}>
@@ -33,4 +33,6 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) 
       </div>
     </div>
   );
+
+  return ReactDOM.createPortal(modalContent, document.getElementById('modal-root')!);
 };
