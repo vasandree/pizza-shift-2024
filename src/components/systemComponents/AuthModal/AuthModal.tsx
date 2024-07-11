@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { otpCodeValidation, phoneValidation } from '@/utils/validationRules';
-import { Button, Form, Input, Modal, Typography } from '@/components/uiKit';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { usePostAuthOtpQuery, usePostSignInQuery } from '@api/hooks';
 import type { CreateOtpDto, SignInDto } from '@api/types';
-
 import { CountDownComponent } from '@components/AuthModal/CountDownComponent.tsx';
 import { InputMask } from '@react-input/mask';
 
-import styles from './AuthModal.module.scss';
-import { usePostAuthOtpQuery, usePostSignInQuery } from '@api/hooks';
+import { Button, Form, Input, Modal, Typography } from '@/components/uiKit';
 import { setToken } from '@/utils/helpers';
+import { otpCodeValidation, phoneValidation } from '@/utils/validationRules';
+
+import styles from './AuthModal.module.scss';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -24,26 +25,30 @@ export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
   const mutateSignIn = usePostSignInQuery();
   const form = useForm();
 
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
+  const sendOtpCode = (params: CreateOtpDto) => {
+    mutateOtp.mutate(
+      { params },
+      {
+        onSuccess: (data) => {
+          setPhone(params.phone);
+          form.setValue('phone', params.phone);
+          setStage('enterOtp');
+          setTime(data.retryDelay / 1000);
+        }
+      }
+    );
+  };
+
   const handlePhoneSubmit: SubmitHandler<CreateOtpDto> = (values) => {
     sendOtpCode(values);
   };
 
   const handleSendNewCode = () => {
-    sendOtpCode({ phone: phone });
-  };
-
-  const sendOtpCode = (params) => {
-    mutateOtp.mutate(
-      { params: params },
-      {
-        onSuccess: (data) => {
-          setPhone(values.phone);
-          setStage('enterOtp');
-          setTime(data.retryDelay / 1000);
-          console.log(data);
-        }
-      }
-    );
+    sendOtpCode({ phone });
   };
 
   const handleOtpSubmit: SubmitHandler<SignInDto> = (values) => {
@@ -57,10 +62,6 @@ export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
         }
       }
     );
-  };
-
-  const onClose = () => {
-    setIsOpen(false);
   };
 
   return (
@@ -78,7 +79,7 @@ export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
           <Form key='phone' onSubmit={handlePhoneSubmit} className={styles.form}>
             <Form.Item name='phone' rules={phoneValidation} className={styles.formItem}>
               <InputMask
-                mask={'+7 (___) ___-__-__'}
+                mask='+7 (___) ___-__-__'
                 replacement='_'
                 component={Input}
                 placeholder='Номер телефона'
@@ -94,7 +95,7 @@ export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
             <Form key='otp' onSubmit={handleOtpSubmit} className={styles.form} form={form}>
               <Form.Item name='phone' rules={phoneValidation} className={styles.formItem}>
                 <InputMask
-                  mask={'+7 (___) ___-__-__'}
+                  mask='+7 (___) ___-__-__'
                   replacement='_'
                   component={Input}
                   placeholder='Номер телефона'
@@ -109,10 +110,7 @@ export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
                 Продолжить
               </Button>
             </Form>
-            <CountDownComponent
-              initialTime={time}
-              handleSendNewCode={handleSendNewCode}
-            ></CountDownComponent>
+            <CountDownComponent initialTime={time} handleSendNewCode={handleSendNewCode} />
           </>
         )}
       </div>

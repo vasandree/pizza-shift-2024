@@ -1,7 +1,8 @@
+import type { BaseResponse } from '@api/types.ts';
 import axios from 'axios';
+
 import { BASE_URL } from '../consts';
 import { getToken } from '../helpers';
-import { BaseResponse } from '@api/types.ts';
 
 const apiInstance = axios.create({
   baseURL: BASE_URL,

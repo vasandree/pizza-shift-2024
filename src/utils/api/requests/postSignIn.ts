@@ -1,4 +1,5 @@
-import { apiInstance, RequestConfig, SignInDto, SignInResponse } from '@/utils/api';
+import type { RequestConfig, SignInDto, SignInResponse } from '@/utils/api';
+import { apiInstance } from '@/utils/api';
 
 export type PostSignInConfig = RequestConfig<SignInDto>;
 

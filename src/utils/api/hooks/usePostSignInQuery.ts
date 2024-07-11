@@ -1,5 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import { postSignIn, PostSignInConfig } from '@/utils/api';
+
+import type { PostSignInConfig } from '@/utils/api';
+import { postSignIn } from '@/utils/api';
 
 export const usePostSignInQuery = () =>
   useMutation({

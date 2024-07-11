@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { getPizzaCatalog } from '@/utils/api';
 
-export const useFetchPizzas = () =>
+export const useFetchPizzasQuery = () =>
   useQuery({
     queryFn: () => getPizzaCatalog(),
     queryKey: ['pizzas'],

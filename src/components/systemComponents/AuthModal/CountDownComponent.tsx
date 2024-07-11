@@ -1,5 +1,7 @@
-import { Button, Typography } from '@/components/uiKit';
 import { useCountdown } from '@components/AuthModal/useCountdown.ts';
+
+import { Button, Typography } from '@/components/uiKit';
+
 import styles from './AuthModal.module.scss';
 
 interface CountDownComponentProps {
@@ -21,6 +23,7 @@ export const CountDownComponent = ({ initialTime, handleSendNewCode }: CountDown
           variant='secondary'
           onClick={() => {
             handleSendNewCode();
+            resetTimer();
           }}
           className={styles.resend_code_btn}
         >

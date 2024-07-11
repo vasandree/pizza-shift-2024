@@ -9,7 +9,7 @@ interface CardProps {
   onClick?: () => void;
 }
 export const Card: FC<CardProps> = ({ className, children, onClick }) => (
-  <div className={clsx(styles.card, className)} onClick={onClick}>
+  <div role='presentation' className={clsx(styles.card, className)} onClick={onClick}>
     {children}
   </div>
 );

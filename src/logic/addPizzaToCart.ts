@@ -1,3 +1,4 @@
+/*
 import type { Pizza, PizzaIngredient } from '@/utils/types';
 
 interface AddPizzaToCartParams {
@@ -7,6 +8,7 @@ interface AddPizzaToCartParams {
   size: string;
 }
 
-export const addPizzaToCart = ({ pizza, toppings, dough, size }: AddPizzaToCartParams) => {
+export const addPizzaToCart = (/!* { pizza, toppings, dough, size }: AddPizzaToCartParams *!/) => {
   // implement logic
 };
+*/

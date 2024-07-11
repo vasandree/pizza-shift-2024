@@ -134,7 +134,7 @@ export const PizzaModal: FC<PizzaModalProps> = ({ pizza, isOpen, onClose }) => {
           <Typography variant='p' className={styles.ext}>
             Состав:{' '}
             {pizza.ingredients.map((ingredient, index) => (
-              <span key={index}>
+              <span>
                 {ingredientsRu[ingredient.name]}
                 {index < pizza.ingredients.length - 1 ? ', ' : ''}
               </span>

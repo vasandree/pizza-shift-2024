@@ -1,5 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import { postAuthOtp, PostAuthOtpConfig } from '@/utils/api';
+
+import type { PostAuthOtpConfig } from '@/utils/api';
+import { postAuthOtp } from '@/utils/api';
 
 export const usePostAuthOtpQuery = () =>
   useMutation({

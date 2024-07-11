@@ -1,3 +1,7 @@
+import { useState } from 'react';
+
+import { AuthModal } from '@/components/systemComponents';
+
 import {
   CartIcon,
   EnterIcon,
@@ -9,8 +13,6 @@ import {
 } from '../../uiKit';
 
 import styles from './Header.module.scss';
-import { useState } from 'react';
-import { AuthModal } from '@/components/systemComponents';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

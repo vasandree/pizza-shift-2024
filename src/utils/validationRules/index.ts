@@ -1,2 +1,2 @@
-export * from './phoneValidation';
 export * from './otpCodeValidation';
+export * from './phoneValidation';

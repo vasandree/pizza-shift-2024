@@ -29,13 +29,10 @@
       "@helpers/*": ["src/utils/helpers/*"],
       "@ui/*": ["src/components/uiKit/*"],
       "@components/*": ["src/components/systemComponents/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
+
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-  ],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

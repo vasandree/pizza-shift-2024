@@ -1,5 +1,4 @@
 const { eslint } = require('@siberiacancode/eslint');
-const {meta} = require("@typescript-eslint/eslint-plugin");
 
 module.exports = {
   ...eslint.react,
@@ -8,8 +7,8 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       parserOptions: {
-        project: true,
-        tsconfigRootDir: __dirname,
+        project: './tsconfig.eslint.json',
+        tsconfigRootDir: __dirname
       },
       rules: {
         '@typescript-eslint/no-unsafe-assignment': 'off',
@@ -25,7 +24,10 @@ module.exports = {
         '@typescript-eslint/no-throw-literal': 'off',
         'no-restricted-syntax': 'off',
         'promise/always-return': 'off',
-        'jsx-a11y/label-has-associated-control': 'off'
+        'jsx-a11y/label-has-associated-control': 'warn',
+        'prettier/prettier': ['error', {
+          endOfLine: 'auto',
+        }],
       }
     }
   ]

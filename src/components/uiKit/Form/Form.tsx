@@ -1,13 +1,9 @@
-import { cloneElement, createContext, ReactElement, ReactNode, useContext } from 'react';
-import {
-  useForm,
-  SubmitHandler,
-  FormProvider,
-  UseFormReturn,
-  ValidationRule,
-  FieldValues
-} from 'react-hook-form';
+import type { ReactElement, ReactNode } from 'react';
+import { cloneElement, createContext, useContext } from 'react';
+import type { FieldValues, SubmitHandler, UseFormReturn, ValidationRule } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import clsx from 'clsx';
+
 import styles from './Form.module.scss';
 
 interface FormProps {
@@ -30,12 +26,22 @@ interface FormContextProps {
 const FormContext = createContext<FormContextProps | null>(null);
 
 const FormComponent = ({ onSubmit, children, className, form }: FormProps) => {
-  const methods = form || useForm();
+  const methods = useForm();
+  const actualMethods = form || methods;
 
   return (
-    <FormContext.Provider value={{ methods, reset: methods.reset, setValue: methods.setValue }}>
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)} className={clsx(styles.form, className)}>
+    <FormContext.Provider
+      value={{
+        methods: actualMethods,
+        reset: actualMethods.reset,
+        setValue: actualMethods.setValue
+      }}
+    >
+      <FormProvider {...actualMethods}>
+        <form
+          onSubmit={actualMethods.handleSubmit(onSubmit)}
+          className={clsx(styles.form, className)}
+        >
           {children}
         </form>
       </FormProvider>

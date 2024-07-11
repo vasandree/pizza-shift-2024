@@ -1,4 +1,5 @@
-import { apiInstance, CreateOtpDto, OtpResponse, RequestConfig } from '@/utils/api';
+import type { CreateOtpDto, OtpResponse, RequestConfig } from '@/utils/api';
+import { apiInstance } from '@/utils/api';
 
 export type PostAuthOtpConfig = RequestConfig<CreateOtpDto>;
 
