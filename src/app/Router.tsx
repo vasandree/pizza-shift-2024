@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 
 import { ProtectedRoute } from '@/app/ProtectedRoute.tsx';
-import { MainPage } from '@/pages';
+import { MainPage, ProfilePage } from '@/pages';
 import { routes } from '@/utils/consts';
 
 import { Layout } from './Layout.tsx';
@@ -20,7 +20,7 @@ export const Router = createBrowserRouter([
         children: [
           {
             path: routes.profile(),
-            element: <MainPage />
+            element: <ProfilePage />
           }
         ]
       },

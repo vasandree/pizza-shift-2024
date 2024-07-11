@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { usePostAuthOtpQuery, usePostSignInQuery } from '@api/hooks';
 import type { CreateOtpDto, SignInDto } from '@api/types';
 import { CountDownComponent } from '@components/AuthModal/CountDownComponent.tsx';
@@ -8,6 +9,7 @@ import { InputMask } from '@react-input/mask';
 
 import { Button, Form, Input, Modal, Typography } from '@/components/uiKit';
 import { setToken } from '@/utils/helpers';
+import { setUser } from '@/utils/redux';
 import { otpCodeValidation, phoneValidation } from '@/utils/validationRules';
 
 import styles from './AuthModal.module.scss';
@@ -21,6 +23,7 @@ export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
   const [stage, setStage] = useState<'getOtp' | 'enterOtp'>('getOtp');
   const [phone, setPhone] = useState<string>('');
   const [time, setTime] = useState();
+  const dispatch = useDispatch();
   const mutateOtp = usePostAuthOtpQuery();
   const mutateSignIn = usePostSignInQuery();
   const form = useForm();
@@ -58,6 +61,7 @@ export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
         onSuccess: (data) => {
           setToken(data.token);
           setPhone('');
+          dispatch(setUser(data.user));
           onClose();
         }
       }

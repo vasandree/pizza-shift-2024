@@ -1,17 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './NotAuthPage.module.scss';
+import { Typography } from '@/components/uiKit';
+import { routes } from '@/utils/consts';
+
+import styles from './NotAuthPage.module.scss';
 
 export const NotAuthPage: React.FC = () => {
   return (
-    <div className='not-auth-container'>
-      <div className='not-auth-content'>
-        <img src='/public/restrictions.png' alt='Not Authenticated' className='not-auth-image' />
-        <h1>Access Denied</h1>
-        <p>
-          You are not authorized to view this page. Please <Link to='/login'>login</Link>.
-        </p>
+    <div className={styles.not_auth_container}>
+      <div className={styles.not_auth_content}>
+        <img
+          src='/public/restrictions.png'
+          alt='Not Authenticated'
+          className={styles.not_auth_image}
+        />
+        <Typography variant='h1'>Доступ запрещён</Typography>
+        <Typography variant='p'>
+          Вы должны быть авторизированы, чтобы просматривать эту страницу.
+        </Typography>
+        <Link to={routes.root()}>На главную</Link>
       </div>
     </div>
   );

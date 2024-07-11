@@ -9,5 +9,9 @@ export const otpCodeValidation: ValidationRule = {
   maxLength: {
     value: 6,
     message: 'OTP код должен состоят из 6 символов'
+  },
+  pattern: {
+    value: /^[0-9]*$/,
+    message: 'Код должен содержать только цифры'
   }
 };

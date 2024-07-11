@@ -3,6 +3,7 @@ export * from './Card/Card';
 export * from './Form/Form';
 export * from './Icons';
 export * from './Input/Input';
+export * from './Loader/Loader';
 export * from './Modal/Modal';
 export * from './Tabs/Tabs';
 export * from './Tooltip/Tooltip';

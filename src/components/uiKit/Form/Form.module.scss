@@ -1,11 +1,13 @@
 @import '../../../styles/mixins';
 
-.label{
-  font-size: 14px;
+.form_item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
-.form_item {
-  margin-bottom: 1rem;
+.label {
+  font-size: 14px;
 }
 
 .error {

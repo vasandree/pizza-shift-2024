@@ -1,6 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { AuthModal } from '@/components/systemComponents';
+import { logoutUser } from '@/logic';
+import { routes } from '@/utils/consts';
+import type { RootState } from '@/utils/redux';
+import { fetchUserSession } from '@/utils/redux';
 
 import {
   CartIcon,
@@ -16,6 +22,13 @@ import styles from './Header.module.scss';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const user = useSelector((state: RootState) => state.user.value);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUserSession({}));
+  }, [dispatch]);
 
   return (
     <>
@@ -23,15 +36,27 @@ export const Header = () => {
         <div className={styles.container}>
           <div>
             <nav className={styles.nav}>
-              <div className={styles.logo}>
+              <div
+                role='presentation'
+                className={styles.logo}
+                onClick={() => navigate(routes.root())}
+              >
                 <LogoIcon />
               </div>
-              <Typography variant='p' className={styles.nav_item}>
-                <ProfileIcon /> Профиль
-              </Typography>
-              <Typography variant='p' className={styles.nav_item}>
-                <TimerIcon /> Заказы
-              </Typography>
+              {user && (
+                <>
+                  <Typography
+                    variant='p'
+                    className={styles.nav_item}
+                    onClick={() => navigate(routes.profile())}
+                  >
+                    <ProfileIcon /> Профиль
+                  </Typography>
+                  <Typography variant='p' className={styles.nav_item}>
+                    <TimerIcon /> Заказы
+                  </Typography>
+                </>
+              )}
             </nav>
           </div>
           <div>
@@ -39,15 +64,15 @@ export const Header = () => {
               <Typography variant='p' className={styles.nav_item}>
                 <CartIcon /> Корзина
               </Typography>
-              <Typography variant='p' className={styles.nav_item}>
-                <ExitIcon /> Выход
-              </Typography>
-
-              {/* todo: add if not auth and auth */}
-
-              <Typography variant='p' className={styles.nav_item} onClick={() => setIsOpen(true)}>
-                <EnterIcon /> Вход
-              </Typography>
+              {user ? (
+                <Typography variant='p' className={styles.nav_item} onClick={() => logoutUser()}>
+                  <ExitIcon /> Выход
+                </Typography>
+              ) : (
+                <Typography variant='p' className={styles.nav_item} onClick={() => setIsOpen(true)}>
+                  <EnterIcon /> Вход
+                </Typography>
+              )}
             </nav>
           </div>
         </div>

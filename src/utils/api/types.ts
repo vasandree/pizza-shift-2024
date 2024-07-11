@@ -99,3 +99,20 @@ export interface SignInResponse extends BaseResponse {
 export interface SessionResponse extends BaseResponse {
   user: User;
 }
+
+export interface UpdateProfileProfileDto {
+  firstname: string;
+  middlename: string;
+  lastname: string;
+  email: string;
+  city: string;
+}
+
+export interface UpdateProfileDto {
+  profile: UpdateProfileProfileDto;
+  phone: string;
+}
+
+export interface UpdateProfileResponse extends BaseResponse {
+  user?: User;
+}
