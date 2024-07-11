@@ -9,6 +9,5 @@
     "strict": true,
     "noEmit": true
   },
-  "include": ["vite.config.ts", ".eslintrc.cjs"]
 //Parsing error: ESLint was configured to run on `<tsconfigRootDir>/vite.config.ts` using `parserOptions.project`: <tsconfigRootDir>/tsconfig.json
 }

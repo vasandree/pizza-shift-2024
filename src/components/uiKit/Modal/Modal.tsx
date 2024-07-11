@@ -18,9 +18,9 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) 
   useHiddenScroll(isOpen);
 
   const handleClose = (e: MouseEvent) => {
-    if (e.target === e.currentTarget) {
+    /*if (e.target === e.currentTarget) {
       onClose();
-    }
+    }*/
   };
 
   const modalContent = (

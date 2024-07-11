@@ -82,6 +82,7 @@ export interface SignInDto {
 }
 
 export interface User {
+  _id: string;
   phone: string;
   firstname?: string;
   middlename?: string;

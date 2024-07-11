@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from '../consts';
+import { getToken } from '../helpers';
 import { BaseResponse } from '@api/types.ts';
 
 const apiInstance = axios.create({
@@ -10,7 +11,7 @@ const apiInstance = axios.create({
 });
 
 apiInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = getToken();
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
