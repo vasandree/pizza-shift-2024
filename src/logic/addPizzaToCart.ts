@@ -1,14 +1,5 @@
-/*
-import type { Pizza, PizzaIngredient } from '@/utils/types';
+import { addToCart, store } from '@/utils/redux';
+import type { PizzaInCart } from '@/utils/types';
 
-interface AddPizzaToCartParams {
-  pizza: Pizza;
-  toppings: PizzaIngredient[];
-  dough: string;
-  size: string;
-}
-
-export const addPizzaToCart = (/!* { pizza, toppings, dough, size }: AddPizzaToCartParams *!/) => {
-  // implement logic
-};
-*/
+export const addPizzaToCart = ({ pizza, toppings, dough, size, price }: PizzaInCart) =>
+  store.dispatch(addToCart({ pizza, toppings, dough, size, price }));

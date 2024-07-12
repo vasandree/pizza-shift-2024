@@ -21,14 +21,26 @@ import {
 import styles from './Header.module.scss';
 
 export const Header = () => {
+  const [pizzasInCart, setPizzasInCart] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const user = useSelector((state: RootState) => state.user.value);
+  const cart = useSelector((state: RootState) => state.cart.value);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUserSession({}));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (cart && cart.length !== 0) {
+      console.log(cart);
+      const totalPizzas = cart.reduce((acc: number, item: PizzasInCart) => acc + item.amount, 0);
+      setPizzasInCart(totalPizzas);
+    } else {
+      setPizzasInCart(0);
+    }
+  }, [cart]);
 
   return (
     <>
@@ -61,8 +73,12 @@ export const Header = () => {
           </div>
           <div>
             <nav className={styles.nav}>
-              <Typography variant='p' className={styles.nav_item}>
-                <CartIcon /> Корзина
+              <Typography
+                variant='p'
+                className={styles.nav_item}
+                onClick={() => navigate(routes.cart())}
+              >
+                <CartIcon /> {pizzasInCart > 0 && `(${pizzasInCart})`} Корзина
               </Typography>
               {user ? (
                 <Typography variant='p' className={styles.nav_item} onClick={() => logoutUser()}>

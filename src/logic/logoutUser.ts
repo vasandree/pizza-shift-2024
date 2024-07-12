@@ -1,6 +1,7 @@
+import { removeToken } from '@/utils/helpers';
 import { setUser, store } from '@/utils/redux';
 
 export const logoutUser = () => {
-  localStorage.removeItem('token');
+  removeToken();
   store.dispatch(setUser(null));
 };

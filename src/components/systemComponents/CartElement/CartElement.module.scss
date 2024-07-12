@@ -1,0 +1,39 @@
+
+.cart_item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.pizza_image {
+  width: 100px;
+  height: 100px;
+  margin-right: 50px;
+}
+
+.pizza_details {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.description_container {
+  width: 200px;
+}
+
+.cross_icon,
+.change_text {
+  cursor: pointer;
+}
+
+.counter_wrapper {
+  width: 15%;
+  height: 50%;
+}

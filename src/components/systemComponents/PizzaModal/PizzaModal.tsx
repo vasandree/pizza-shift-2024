@@ -1,11 +1,11 @@
-import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
 
 import { IngredientCard, TooltipContent } from '@/components/systemComponents';
+import { addPizzaToCart, updatePizzaInCart } from '@/logic';
 import { doughsRu, ingredientsRu, sizesCm, sizesRu } from '@/utils/consts';
 import { calculateTotalPizzaPrice, getImage, getShortenDoughName } from '@/utils/helpers';
-import type { Pizza, PizzaDough, PizzaIngredient, PizzaSize } from '@/utils/types';
+import type { Pizza, PizzaDough, PizzaInCart, PizzaIngredient, PizzaSize } from '@/utils/types';
 
 import type { ModalProps } from '../../uiKit';
 import { Button, InfoIcon, Modal, Tabs, Tooltip, Typography } from '../../uiKit';
@@ -14,22 +14,50 @@ import styles from './PizzaModal.module.scss';
 
 interface PizzaModalProps extends ModalProps {
   pizza: Pizza;
+  pizzaInCart?: PizzaInCart;
 }
 
-export const PizzaModal: FC<PizzaModalProps> = ({ pizza, isOpen, onClose }) => {
-  const [currentSize, setCurrentSize] = useState<PizzaSize>(pizza.sizes[0]);
-  const [currentDough, setCurrentDough] = useState<PizzaDough>(pizza.doughs[0]);
-  const [currentPrice, setCurrentPrice] = useState<number>(pizza.sizes[0].price);
-  const [selectedIngredients, setSelectedIngredients] = useState<PizzaIngredient[]>([]);
+export const PizzaModal = ({ pizza, isOpen, onClose, pizzaInCart }: PizzaModalProps) => {
+  const [currentSize, setCurrentSize] = useState<PizzaSize>(pizzaInCart?.size ?? pizza.sizes[0]);
+  const [currentDough, setCurrentDough] = useState<PizzaDough>(
+    pizzaInCart?.dough ?? pizza.doughs[0]
+  );
+  const [currentPrice, setCurrentPrice] = useState<number>(
+    pizzaInCart?.price ?? pizza.sizes[0].price
+  );
+  const [selectedIngredients, setSelectedIngredients] = useState<PizzaIngredient[]>(
+    pizzaInCart?.toppings ?? []
+  );
 
   useEffect(() => {
     if (!isOpen) {
-      setCurrentSize(pizza.sizes[0]);
-      setCurrentDough(pizza.doughs[0]);
-      setCurrentPrice(pizza.sizes[0].price);
-      setSelectedIngredients([]);
+      setCurrentSize(pizzaInCart?.size ?? pizza.sizes[0]);
+      setCurrentDough(pizzaInCart?.dough ?? pizza.doughs[0]);
+      setCurrentPrice(pizzaInCart?.price ?? pizza.sizes[0].price);
+      setSelectedIngredients(pizzaInCart?.toppings ?? []);
     }
-  }, [isOpen, pizza]);
+  }, [isOpen, pizza, pizzaInCart]);
+
+  const updatePizza = () => {
+    updatePizzaInCart(pizzaInCart, {
+      toppings: selectedIngredients,
+      dough: currentDough,
+      size: currentSize,
+      price: currentPrice
+    });
+    onClose();
+  };
+
+  const handleAddToCart = () => {
+    const pizzaInCart: PizzaInCart = {
+      pizza,
+      toppings: selectedIngredients,
+      dough: currentDough,
+      size: currentSize,
+      price: currentPrice
+    };
+    addPizzaToCart(pizzaInCart);
+  };
 
   const handleSizeChange = (value: PizzaSize) => {
     setCurrentSize(value);
@@ -104,7 +132,7 @@ export const PizzaModal: FC<PizzaModalProps> = ({ pizza, isOpen, onClose }) => {
               <InfoIcon />
             </Tooltip>
           </div>
-          <Typography variant='p' className={styles.text}>
+          <Typography variant='body1' className={styles.text}>
             {sizesRu[currentSize.name]}, {sizesCm[currentSize.name]}, {doughsRu[currentDough.name]}
           </Typography>
           <Tabs className={styles.tabs} selected={currentSize} onChange={handleSizeChange}>
@@ -131,10 +159,10 @@ export const PizzaModal: FC<PizzaModalProps> = ({ pizza, isOpen, onClose }) => {
               />
             ))}
           </Tabs>
-          <Typography variant='p' className={styles.ext}>
+          <Typography variant='body1' className={styles.ext}>
             Состав:{' '}
             {pizza.ingredients.map((ingredient, index) => (
-              <span>
+              <span key={index}>
                 {ingredientsRu[ingredient.name]}
                 {index < pizza.ingredients.length - 1 ? ', ' : ''}
               </span>
@@ -145,13 +173,20 @@ export const PizzaModal: FC<PizzaModalProps> = ({ pizza, isOpen, onClose }) => {
               <IngredientCard
                 key={ingredient.name}
                 ingredient={ingredient}
+                selected={selectedIngredients.find((selected) => selected.name === ingredient.name)}
                 onClick={() => handleIngredientClick(ingredient)}
               />
             ))}
           </div>
-          <Button className={styles.btn} variant='primary'>
-            Добавить в корзину за {currentPrice}₽
-          </Button>
+          {pizzaInCart ? (
+            <Button className={styles.btn} variant='primary' onClick={updatePizza}>
+              Изменить пиццу
+            </Button>
+          ) : (
+            <Button className={styles.btn} variant='primary' onClick={handleAddToCart}>
+              Добавить в корзину за {currentPrice}₽
+            </Button>
+          )}
         </div>
       </div>
     </Modal>

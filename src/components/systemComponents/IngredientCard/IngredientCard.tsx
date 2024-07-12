@@ -1,6 +1,3 @@
-import type { FC } from 'react';
-import { useState } from 'react';
-
 import { ingredientsRu } from '@/utils/consts';
 import { getImage } from '@/utils/helpers';
 import type { PizzaIngredient } from '@/utils/types';
@@ -12,13 +9,11 @@ import styles from './IngredientCard.module.scss';
 interface IngredientCardProps {
   ingredient: PizzaIngredient;
   onClick: () => void;
+  selected: boolean;
 }
 
-export const IngredientCard: FC<IngredientCardProps> = ({ ingredient, onClick }) => {
-  const [selected, setSelected] = useState(false);
-
+export const IngredientCard = ({ ingredient, onClick, selected }: IngredientCardProps) => {
   const handleClick = () => {
-    setSelected(!selected);
     onClick();
   };
 

@@ -116,3 +116,80 @@ export interface UpdateProfileDto {
 export interface UpdateProfileResponse extends BaseResponse {
   user?: User;
 }
+
+export interface CreatePizzaPaymentAddressDto {
+  street: string;
+  house: string;
+  apartment: string;
+  comment?: string;
+}
+
+export interface CreatePizzaPaymentPersonDto {
+  firstname: string;
+  lastname: string;
+  middlename?: string;
+  phone: string;
+}
+
+export interface CreatePizzaPaymentDebitCardDto {
+  pan: string;
+  expireDate: string;
+  cvv: string;
+}
+
+export interface CreatePizzaPaymentPizzaDto {
+  id: string;
+  name: string;
+  toppings: PizzaIngredient[];
+  size: string;
+  dough: string;
+}
+
+export interface CreatePizzaPaymentDto {
+  receiverAddress: CreatePizzaPaymentAddressDto;
+  person: CreatePizzaPaymentPersonDto;
+  debitCard: CreatePizzaPaymentDebitCardDto;
+  pizzas: CreatePizzaPaymentPizzaDto;
+}
+
+export interface PizzaPerson {
+  firstname: string;
+  lastname: string;
+  middlename: string;
+  phone: string;
+}
+
+export interface PizzaAddress {
+  street: string;
+  house: string;
+  apartment: string;
+  comment: string;
+}
+
+export const PizzaStatus = {
+  0: 'IN_PROCESSING',
+  1: 'WAITING_COURIER',
+  2: 'ON_MY_WAY',
+  3: 'SUCCESS',
+  4: 'CANCELED'
+};
+
+export interface PizzaOrder {
+  person: PizzaPerson;
+  receiverAddress: PizzaAddress;
+  status: number;
+  cancellable: boolean;
+}
+export interface PizzaPaymentResponse extends BaseResponse {
+  order: PizzaOrder;
+}
+
+export interface PizzaOrderResponse extends BaseResponse {
+  order: PizzaOrder;
+}
+
+export interface PizzaOrdersResponse extends BaseResponse {
+  orders: PizzaOrder[];
+}
+
+export interface CancelPizzaOrderResponse extends BaseResponse {}

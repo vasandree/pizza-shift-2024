@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import { useState } from 'react';
 
 import { PizzaModal } from '@/components/systemComponents';
@@ -13,7 +12,7 @@ interface PizzaCardProps {
   pizza: Pizza;
 }
 
-export const PizzaCard: FC<PizzaCardProps> = ({ pizza }) => {
+export const PizzaCard = ({ pizza }: PizzaCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleAddClick = () => setIsOpen(true);
@@ -33,7 +32,7 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza }) => {
             {pizza.description}
           </Typography>
           <Typography variant='p' type='strong' className={styles.price}>
-            от {pizza.sizes[0].price}
+            от {pizza.sizes[0].price}₽
           </Typography>
           <Button className={styles.btn} variant='primary' onClick={handleAddClick}>
             Добавить

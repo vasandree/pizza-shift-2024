@@ -1,1 +1,1 @@
-export * from './PizzaInCart.ts';
+export * from './types.ts';

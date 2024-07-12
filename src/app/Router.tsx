@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 
 import { ProtectedRoute } from '@/app/ProtectedRoute.tsx';
-import { MainPage, ProfilePage } from '@/pages';
+import { CartPage, MainPage, ProfilePage } from '@/pages';
 import { routes } from '@/utils/consts';
 
 import { Layout } from './Layout.tsx';
@@ -27,6 +27,10 @@ export const Router = createBrowserRouter([
       {
         path: routes.root(),
         element: <MainPage />
+      },
+      {
+        path: routes.cart(),
+        element: <CartPage />
       }
     ]
   }
