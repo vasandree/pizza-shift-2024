@@ -38,7 +38,7 @@ export const IngredientCard = ({ ingredient, onClick, selected }: IngredientCard
         {ingredientsRu[ingredient.name]}
       </Typography>
       <Typography variant='p' className={styles.ingredient_card__cost}>
-        {ingredient.cost}₽
+        {ingredient.cost} ₽
       </Typography>
     </Card>
   );

@@ -52,7 +52,7 @@ export const CartElement = ({ pizzaInCart, amount }: PizzasInCart) => {
         <div className={styles.counter_wrapper}>
           <Counter pizzaInCart={pizzaInCart} amount={amount} />
         </div>
-        <Typography variant='p'> {price * amount} руб.</Typography>
+        <Typography variant='p'> {price * amount} ₽</Typography>
         <CrossIcon className={styles.cross_icon} onClick={handleDeleteItem} />
       </div>
       <PizzaModal

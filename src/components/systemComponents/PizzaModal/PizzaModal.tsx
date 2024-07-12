@@ -132,7 +132,7 @@ export const PizzaModal = ({ pizza, isOpen, onClose, pizzaInCart }: PizzaModalPr
               <InfoIcon />
             </Tooltip>
           </div>
-          <Typography variant='body1' className={styles.text}>
+          <Typography variant='p' className={styles.text}>
             {sizesRu[currentSize.name]}, {sizesCm[currentSize.name]}, {doughsRu[currentDough.name]}
           </Typography>
           <Tabs className={styles.tabs} selected={currentSize} onChange={handleSizeChange}>
@@ -159,7 +159,7 @@ export const PizzaModal = ({ pizza, isOpen, onClose, pizzaInCart }: PizzaModalPr
               />
             ))}
           </Tabs>
-          <Typography variant='body1' className={styles.ext}>
+          <Typography variant='p' className={styles.ext}>
             Состав:{' '}
             {pizza.ingredients.map((ingredient, index) => (
               <span key={index}>
@@ -184,7 +184,7 @@ export const PizzaModal = ({ pizza, isOpen, onClose, pizzaInCart }: PizzaModalPr
             </Button>
           ) : (
             <Button className={styles.btn} variant='primary' onClick={handleAddToCart}>
-              Добавить в корзину за {currentPrice}₽
+              Добавить в корзину за {currentPrice} ₽
             </Button>
           )}
         </div>

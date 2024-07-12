@@ -10,12 +10,12 @@ export const NotAuthPage: React.FC = () => {
   return (
     <div className={styles.not_auth_container}>
       <div className={styles.not_auth_content}>
+        <Typography variant='h1'>Доступ запрещён</Typography>
         <img
           src='/public/restrictions.png'
           alt='Not Authenticated'
           className={styles.not_auth_image}
         />
-        <Typography variant='h1'>Доступ запрещён</Typography>
         <Typography variant='p'>
           Вы должны быть авторизированы, чтобы просматривать эту страницу.
         </Typography>

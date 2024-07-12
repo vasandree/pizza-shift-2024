@@ -20,7 +20,7 @@ export const PizzaCard = ({ pizza }: PizzaCardProps) => {
 
   return (
     <>
-      <Card className={styles.pizza_card}>
+      <Card className={styles.pizza_card} onClick={() => setIsOpen(true)}>
         <div className={styles.image_container}>
           <img src={getImage(pizza.img)} alt={pizza.name} className={styles.image} />
         </div>
@@ -32,7 +32,7 @@ export const PizzaCard = ({ pizza }: PizzaCardProps) => {
             {pizza.description}
           </Typography>
           <Typography variant='p' type='strong' className={styles.price}>
-            от {pizza.sizes[0].price}₽
+            от {pizza.sizes[0].price} ₽
           </Typography>
           <Button className={styles.btn} variant='primary' onClick={handleAddClick}>
             Добавить

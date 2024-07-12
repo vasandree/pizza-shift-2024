@@ -35,7 +35,9 @@ export const CartPage = () => {
   const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
   const [card, setCard] = useState<CreatePizzaPaymentDebitCardDto>(null);
   const [stage, setStage] = useState<'cart' | 'person' | 'card'>('cart');
+  const [priceInModal, setPriceInModal] = useState(0);
   const cart = useSelector((state: RootState) => state.cart.value);
+  const user = useSelector((state: RootState) => state.user.value);
   const dispatch = useDispatch();
   const [totalPrice, setTotalPrice] = useState(0);
   const orderMutation = usePostPizzaPaymentQuery();
@@ -55,9 +57,19 @@ export const CartPage = () => {
     calculateTotalPrice();
   }, [stage, cart]);
 
+  useEffect(() => {
+    if (stage === 'person' && user) {
+      form.setValue('firstname', user.firstname);
+      form.setValue('lastname', user.lastname);
+      form.setValue('middlename', user.middlename);
+      form.setValue('phone', user.phone);
+    }
+  }, [stage, user]);
+
   const handlePlaceOrder = () => {
-    setPizzasInOrder(cart.map(convertToPaymentPizzaDto));
+    setPizzasInOrder(cart.flatMap(convertToPaymentPizzaDto));
     setStage('person');
+    setPriceInModal(totalPrice);
   };
 
   const addPersonToOrder: SubmitHandler = (data) => {
@@ -88,7 +100,7 @@ export const CartPage = () => {
     orderMutation.mutate(
       { params: order },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           setSuccessModalIsOpen(true);
           setStage('cart');
           dispatch(clearCart());
@@ -102,7 +114,13 @@ export const CartPage = () => {
       {stage === 'cart' && (
         <>
           {cart.length === 0 ? (
-            <Typography variant='h2'>Тут пока ничего нет</Typography>
+            <>
+              <img src='/public/empty_card.svg' alt='empty_cart' className={styles.img} />
+              <Typography variant='h2'>ОЙ, пусто!</Typography>
+              <Typography variant='p' type='secondary'>
+                Ваша корзина пуста, откройте «Меню» и выберите понравившийся товар.
+              </Typography>
+            </>
           ) : (
             <>
               <div>
@@ -270,7 +288,7 @@ export const CartPage = () => {
             debitCard: card,
             receiverAddress: addressInOrder
           }}
-          totalPrice={totalPrice}
+          totalPrice={priceInModal}
         />
       )}
     </div>
