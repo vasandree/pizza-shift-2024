@@ -149,7 +149,7 @@ export interface CreatePizzaPaymentDto {
   receiverAddress: CreatePizzaPaymentAddressDto;
   person: CreatePizzaPaymentPersonDto;
   debitCard: CreatePizzaPaymentDebitCardDto;
-  pizzas: CreatePizzaPaymentPizzaDto;
+  pizzas: CreatePizzaPaymentPizzaDto[];
 }
 
 export interface PizzaPerson {

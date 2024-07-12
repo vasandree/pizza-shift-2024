@@ -1,9 +1,9 @@
 import type { ValidationRule } from 'react-hook-form';
 
-export const cityValidation: ValidationRule = {
+export const cvvValidation: ValidationRule = {
   required: 'Обязательное поле',
   pattern: {
-    value: /^[A-Za-zА-Яа-яЁё\s.,-]*$/,
+    value: /^\d\d\d*$/,
     message: 'Невалидное поле'
   }
 };

@@ -1,0 +1,25 @@
+.modal {
+  width: 500px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal_order, .modal_address, .modal-total {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.modal-total {
+  margin-top: 20px;
+}
+
+.icon {
+  margin-bottom: 20px;
+}

@@ -6,4 +6,5 @@ export * from './ExitIcon.tsx';
 export * from './InfoIcon.tsx';
 export * from './LogoIcon.tsx';
 export * from './ProfileIcon.tsx';
+export * from './SuccessIcon.tsx';
 export * from './TimerIcon.tsx';

@@ -1,24 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { usePostPizzaPaymentQuery } from '@api/hooks/usePostPizzaPaymentQuery.ts';
 import { convertToPaymentPizzaDto } from '@helpers/convertToPaymentPizzaDto.ts';
 import { InputMask } from '@react-input/mask';
 
 import { CartElement } from '@/components/systemComponents';
-import { Button, Form, Input, Typography } from '@/components/uiKit';
-import type { CreatePizzaPaymentPersonDto, CreatePizzaPaymentPizzaDto } from '@/utils/api';
+import { Button, Form, Input, Textarea, Typography } from '@/components/uiKit';
+import { SuccessModal } from '@/pages/CartPage/SuccessModal.tsx';
+import type {
+  CreatePizzaPaymentAddressDto,
+  CreatePizzaPaymentDebitCardDto,
+  CreatePizzaPaymentDto,
+  CreatePizzaPaymentPersonDto,
+  CreatePizzaPaymentPizzaDto
+} from '@/utils/api';
 import type { RootState } from '@/utils/redux';
+import { clearCart } from '@/utils/redux';
 import type { PizzasInCart } from '@/utils/types';
-import { emailValidation, nameValidation, phoneValidation } from '@/utils/validationRules';
+import { cityValidation, nameValidation, phoneValidation } from '@/utils/validationRules';
+import { apartmentValidation } from '@/utils/validationRules/apartmentValidation.ts';
+import { cvvValidation } from '@/utils/validationRules/cvvValidation.ts';
+import { expiryDateValidation } from '@/utils/validationRules/expiryDateValidation.ts';
+import { houseValidation } from '@/utils/validationRules/houseValidation.ts';
+import { panValidation } from '@/utils/validationRules/panValidation.ts';
 
 import styles from './CartPage.module.scss';
 
 export const CartPage = () => {
   const [pizzasInOrder, setPizzasInOrder] = useState<CreatePizzaPaymentPizzaDto[]>([]);
   const [personInOrder, setPersonInOrder] = useState<CreatePizzaPaymentPersonDto>(null);
+  const [addressInOrder, setAddressInOrder] = useState<CreatePizzaPaymentAddressDto>(null);
+  const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
+  const [card, setCard] = useState<CreatePizzaPaymentDebitCardDto>(null);
   const [stage, setStage] = useState<'cart' | 'person' | 'card'>('cart');
   const cart = useSelector((state: RootState) => state.cart.value);
+  const dispatch = useDispatch();
   const [totalPrice, setTotalPrice] = useState(0);
+  const orderMutation = usePostPizzaPaymentQuery();
+  const form = useForm();
 
   useEffect(() => {
     const calculateTotalPrice = () => {
@@ -32,16 +53,48 @@ export const CartPage = () => {
     };
 
     calculateTotalPrice();
-  }, [cart]);
+  }, [stage, cart]);
 
   const handlePlaceOrder = () => {
     setPizzasInOrder(cart.map(convertToPaymentPizzaDto));
     setStage('person');
   };
 
-  const addPersonToOrder: SubmitHandler<CreatePizzaPaymentPersonDto> = (person) => {
-    console.log(person);
-    setPersonInOrder(person);
+  const addPersonToOrder: SubmitHandler = (data) => {
+    console.log(data);
+    setAddressInOrder({
+      street: data.street,
+      house: data.house,
+      apartment: data.apartment,
+      comment: data.comment
+    });
+    setPersonInOrder({
+      firstname: data.firstname,
+      lastname: data.lastname,
+      middlename: data.middlename,
+      phone: data.phone
+    });
+    setStage('card');
+  };
+
+  const handleSubmitOrder: SubmitHandler = (data) => {
+    setCard({ pan: data.pan, expireDate: data.expireDate, cvv: data.cvv });
+    const order: CreatePizzaPaymentDto = {
+      pizzas: pizzasInOrder,
+      person: personInOrder,
+      debitCard: { pan: data.pan, expireDate: data.expireDate, cvv: data.cvv },
+      receiverAddress: addressInOrder
+    };
+    orderMutation.mutate(
+      { params: order },
+      {
+        onSuccess: (data) => {
+          setSuccessModalIsOpen(true);
+          setStage('cart');
+          dispatch(clearCart());
+        }
+      }
+    );
   };
 
   return (
@@ -68,60 +121,157 @@ export const CartPage = () => {
         </>
       )}
       {stage === 'person' && (
-        <Form key='person' onSubmit={addPersonToOrder}>
-          <div className={styles.form_row}>
+        <>
+          <Typography variant='h2'>Введите ваши данные </Typography>
+          <Form form={form} key='person' onSubmit={addPersonToOrder}>
+            <div className={styles.form_row}>
+              <Form.Item
+                name='firstname'
+                rules={nameValidation}
+                label='Имя'
+                className={styles.form_item}
+              >
+                <Input type='text' placeholder='Имя' className={styles.row_input} />
+              </Form.Item>
+              <Form.Item
+                name='lastname'
+                label='Фамилия'
+                rules={nameValidation}
+                className={styles.form_item}
+              >
+                <Input type='text' placeholder='Фамилия' className={styles.row_input} />
+              </Form.Item>
+              <Form.Item
+                name='middlename'
+                label='Отчество'
+                rules={nameValidation}
+                className={styles.form_item}
+              >
+                <Input type='text' placeholder='Отчество' className={styles.row_input} />
+              </Form.Item>
+            </div>
             <Form.Item
-              name='firstname'
-              rules={nameValidation}
-              label='Имя'
+              name='phone'
+              label='Номер телефона'
+              rules={phoneValidation}
               className={styles.form_item}
             >
-              <Input type='text' placeholder='Имя' className={styles.row_input} />
+              <InputMask
+                mask='+7 (___) ___-__-__'
+                replacement='_'
+                component={Input}
+                placeholder='Номер телефона'
+                className={styles.input}
+              />
             </Form.Item>
-            <Form.Item
-              name='lastname'
-              label='Фамилия'
-              rules={nameValidation}
-              className={styles.form_item}
-            >
-              <Input type='text' placeholder='Фамилия' className={styles.row_input} />
+            <div className={styles.form_row}>
+              <Form.Item
+                label='Улица'
+                rules={cityValidation}
+                name='street'
+                className={styles.form_item}
+              >
+                <Input placeholder='Улица' className={styles.row_input} />
+              </Form.Item>
+              <Form.Item
+                label='Дом'
+                rules={houseValidation}
+                name='house'
+                className={styles.form_item}
+              >
+                <Input placeholder='Дом' className={styles.row_input} />
+              </Form.Item>
+              <Form.Item
+                rules={apartmentValidation}
+                label='Квартира'
+                name='apartment'
+                className={styles.form_item}
+              >
+                <Input type='number' placeholder='Кваартира' className={styles.row_input} />
+              </Form.Item>
+            </div>
+            <Form.Item name='comment' label='Коммментарий' className={styles.form_item}>
+              <Textarea className={styles.textarea} />
             </Form.Item>
-            <Form.Item
-              name='middlename'
-              label='Отчество'
-              rules={nameValidation}
-              className={styles.form_item}
-            >
-              <Input type='text' placeholder='Отчество' className={styles.row_input} />
-            </Form.Item>
+            <div className={styles.btn_container}>
+              <Button className={styles.btn} variant='secondary' onClick={() => setStage('cart')}>
+                Назад
+              </Button>
+              <Button className={styles.btn} variant='primary' type='submit'>
+                Продолжить
+              </Button>
+            </div>
+          </Form>
+        </>
+      )}
+      {stage === 'card' && (
+        <>
+          <Typography variant='h2'>Введите данные карты для оплаты</Typography>
+          <div className={styles.card_form_container}>
+            <Form key='card' form={form} onSubmit={handleSubmitOrder}>
+              <Form.Item
+                rules={panValidation}
+                name='pan'
+                label='Номер карты'
+                className={styles.form_item}
+              >
+                <InputMask
+                  mask='____ ____'
+                  replacement='_'
+                  component={Input}
+                  placeholder='0000 0000'
+                  className={styles.card_input}
+                />
+              </Form.Item>
+              <div className={styles.form_row}>
+                <Form.Item
+                  rules={expiryDateValidation}
+                  name='expireDate'
+                  label='Срок'
+                  className={styles.form_item}
+                >
+                  <InputMask
+                    mask='__/__'
+                    replacement='_'
+                    component={Input}
+                    placeholder='00/00'
+                    className={styles.row_input}
+                  />
+                </Form.Item>
+                <Form.Item
+                  rules={cvvValidation}
+                  name='cvv'
+                  label='СVV'
+                  className={styles.form_item}
+                >
+                  <InputMask
+                    mask='___'
+                    replacement='_'
+                    component={Input}
+                    placeholder='000'
+                    className={styles.row_input}
+                  />
+                </Form.Item>
+                <Button className={styles.btn} variant='primary' type='submit'>
+                  Оплатить
+                </Button>
+              </div>
+            </Form>
           </div>
-          <Form.Item
-            name='phone'
-            label='Номер телефона'
-            rules={phoneValidation}
-            className={styles.form_item}
-          >
-            <InputMask
-              mask='+7 (___) ___-__-__'
-              replacement='_'
-              component={Input}
-              placeholder='Номер телефона'
-              className={styles.input}
-              onChange={() => setPhone(e.target.value)}
-            />
-          </Form.Item>
-          <div className={styles.form_row}>
-            <Form.Item label='Адрес' name='address' className={styles.form_item}>
-              <Input type='email' placeholder='Email' className={styles.row_input} />
-            </Form.Item>
-            <Form.Item label='Адрес' name='address' className={styles.form_item}>
-              <Input type='email' placeholder='Email' className={styles.row_input} />
-            </Form.Item>
-            <Form.Item label='Адрес' name='address' className={styles.form_item}>
-              <Input type='email' placeholder='Email' className={styles.row_input} />
-            </Form.Item>
-          </div>
-        </Form>
+        </>
+      )}
+      {successModalIsOpen && (
+        <SuccessModal
+          isOpen={successModalIsOpen}
+          onClose={() => setSuccessModalIsOpen(false)}
+          order={{
+            pizzas: pizzasInOrder,
+            person: personInOrder,
+            debitCard: card,
+            receiverAddress: addressInOrder
+          }}
+          totalPrice={totalPrice}
+        />
       )}
     </div>
   );

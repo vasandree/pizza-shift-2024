@@ -1,8 +1,7 @@
 import type { FC, MouseEvent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
+import { CrossIcon } from '@ui/icons';
 import { clsx } from 'clsx';
-
-import { CrossIcon } from '../Icons';
 
 import { useHiddenScroll } from './useHiddenScroll.ts';
 

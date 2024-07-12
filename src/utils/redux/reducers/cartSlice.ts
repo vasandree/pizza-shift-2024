@@ -70,9 +70,13 @@ export const cartSlice = createSlice({
             )
           )
       );
+    },
+    clearCart: (state) => {
+      state.value = [];
     }
   }
 });
 
-export const { addToCart, removeOneFromCart, removeFromCart, updatePizza } = cartSlice.actions;
+export const { addToCart, removeOneFromCart, removeFromCart, updatePizza, clearCart } =
+  cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
