@@ -1,0 +1,112 @@
+@import '../../../styles/mixins';
+
+.modal {
+  max-width: 50%;
+}
+
+.pizza_modal {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  .image_container {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image {
+      max-width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      mix-blend-mode: multiply;
+    }
+  }
+
+  .content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .name {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .text {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      margin-right: 1rem;
+      justify-content: space-between;
+
+      .tooltip {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .ingredients_container {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+    }
+
+    .tabs {
+      display: flex;
+      flex-direction: row;
+      padding: 2px 2px;
+      justify-content: center;
+      border-radius: 20px;
+      border: none;
+      margin-top: 4px;
+      margin-bottom: 4px;
+      background-color: rgba(213, 213, 213, 0.49);
+      width: 100%;
+    }
+    .tab {
+      flex: 1;
+      padding: 10px 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font: inherit;
+      outline: none;
+      color: #7a869a;
+      transition: background-color 0.3s, color 0.3s;
+      border-radius: 20px;
+
+      &.active {
+        background-color: #ffffff;
+        color: $primary-text-color;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      &:not(.active) {
+        color: $secondary-text-color;
+      }
+
+
+      &:hover:not(.active) {
+        background-color: #e0e0e0;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@import '../../../styles/mixins';
+
+.label{
+  font-size: 14px;
+}
+
+.form_item {
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: $danger-color;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

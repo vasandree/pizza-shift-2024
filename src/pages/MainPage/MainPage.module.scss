@@ -1,0 +1,14 @@
+@import '../../styles/globals';
+@import '../../styles/fonts';
+
+.main_page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+}

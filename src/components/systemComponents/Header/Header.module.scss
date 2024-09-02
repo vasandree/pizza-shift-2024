@@ -1,0 +1,56 @@
+@import '../../../styles/mixins';
+
+.header {
+  background-color: $light-color;
+  border-bottom: 1px solid $dark-color;
+  font-family: $font-family-sans-serif;
+  padding: 1rem 2rem;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    margin-right: 1rem;
+
+    img {
+      width: 100px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.5rem;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  .nav_item {
+    display: flex;
+    align-items: center;
+    color: $dark-color;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5rem;
+      transition: fill 0.3s ease;
+    }
+  }
+}

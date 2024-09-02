@@ -1,0 +1,14 @@
+.tabs {
+  display: flex;
+}
+
+.item {
+  padding: 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  &.active {
+    font-weight: bold;
+  }
+}

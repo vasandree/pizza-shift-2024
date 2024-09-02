@@ -1,0 +1,13 @@
+@import "mixins";
+@import "fonts";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-family-sans-serif;
+  color: $dark-color;
+  background-color: $light-color;
+}
