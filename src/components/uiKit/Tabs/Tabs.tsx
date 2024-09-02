@@ -65,8 +65,8 @@ const TabsComponent: FC<TabsProps> = ({ children, selected, onChange, className 
   );
 };
 
-interface TabsComponentType extends FC<TabsProps> {
-  Item: FC<TabsItemProps>;
+interface TabsComponentType extends TabsProps {
+  Item: TabsItemProps;
 }
 
 const Tabs = TabsComponent as TabsComponentType;

@@ -1,6 +1,4 @@
-import type { PizzaDough } from './PizzaDough.ts';
-import type { PizzaIngredient } from './PizzaIngredient.ts';
-import type { PizzaSize } from './PizzaSize.ts';
+import type { PizzaDough, PizzaIngredient, PizzaSize } from '@api/types.ts';
 
 export interface PizzaInCart {
   id: string;

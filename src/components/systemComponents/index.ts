@@ -1,3 +1,4 @@
+export * from './AuthModal/AuthModal';
 export * from './Header/Header';
 export * from './IngredientCard/IngredientCard';
 export * from './PizzaCard/PizzaCard';

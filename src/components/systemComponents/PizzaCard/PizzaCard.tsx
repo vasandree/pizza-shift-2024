@@ -40,7 +40,7 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza }) => {
           </Button>
         </div>
       </Card>
-      <PizzaModal pizza={pizza} isOpen={isOpen} onClose={handleCloseModal} />
+      <PizzaModal key={pizza.id} pizza={pizza} isOpen={isOpen} onClose={handleCloseModal} />
     </>
   );
 };

@@ -143,6 +143,7 @@ export const PizzaModal: FC<PizzaModalProps> = ({ pizza, isOpen, onClose }) => {
           <div className={styles.ingredients_container}>
             {pizza.toppings.map((ingredient) => (
               <IngredientCard
+                key={ingredient.name}
                 ingredient={ingredient}
                 onClick={() => handleIngredientClick(ingredient)}
               />

@@ -7,6 +7,7 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       parserOptions: {
+        project: './tsconfig.eslint.json',
         tsconfigRootDir: __dirname
       },
       rules: {
@@ -23,7 +24,10 @@ module.exports = {
         '@typescript-eslint/no-throw-literal': 'off',
         'no-restricted-syntax': 'off',
         'promise/always-return': 'off',
-        'jsx-a11y/label-has-associated-control': 'off'
+        'jsx-a11y/label-has-associated-control': 'warn',
+        'prettier/prettier': ['error', {
+          endOfLine: 'auto',
+        }],
       }
     }
   ]
