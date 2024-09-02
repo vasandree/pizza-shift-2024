@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import { convertToPaymentPizzaDto } from '@helpers/convertToPaymentPizzaDto.ts';
 import { InputMask } from '@react-input/mask';
 
 import { CartElement } from '@/components/systemComponents';
-import { Button, Form, Input, Textarea, Typography } from '@/components/uiKit';
+import { Button, EmptyCart, Form, Input, Textarea, Typography } from '@/components/uiKit';
 import { SuccessModal } from '@/pages/CartPage/SuccessModal.tsx';
 import type {
   CreatePizzaPaymentAddressDto,
@@ -73,7 +73,6 @@ export const CartPage = () => {
   };
 
   const addPersonToOrder: SubmitHandler = (data) => {
-    console.log(data);
     setAddressInOrder({
       street: data.street,
       house: data.house,
@@ -115,7 +114,7 @@ export const CartPage = () => {
         <>
           {cart.length === 0 ? (
             <>
-              <img src='/public/empty_card.svg' alt='empty_cart' className={styles.img} />
+              <EmptyCart className={styles.img} />
               <Typography variant='h2'>ОЙ, пусто!</Typography>
               <Typography variant='p' type='secondary'>
                 Ваша корзина пуста, откройте «Меню» и выберите понравившийся товар.

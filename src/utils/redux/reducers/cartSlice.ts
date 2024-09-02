@@ -18,7 +18,9 @@ const getExistingItem = (items: PizzasInCart[], itemToFind: PizzaInCart) => {
       item.pizza.size.name === itemToFind.size.name &&
       item.pizza.dough.name === itemToFind.dough.name &&
       item.pizza.toppings.length === itemToFind.toppings.length &&
-      item.pizza.toppings.every((topping, index) => topping.id === itemToFind.toppings[index].id)
+      item.pizza.toppings.every(
+        (topping, index) => topping.name === itemToFind.toppings[index].name
+      )
   );
 };
 
@@ -62,11 +64,9 @@ export const cartSlice = createSlice({
         (item) =>
           !(
             item.pizza.pizza.id === action.payload.pizza.id &&
-            item.pizza.size.id === action.payload.size.id &&
-            item.pizza.dough.id === action.payload.dough.id &&
             item.pizza.toppings.length === action.payload.toppings.length &&
             item.pizza.toppings.every(
-              (topping, index) => topping.id === action.payload.toppings[index].id
+              (topping, index) => topping.name === action.payload.toppings[index].name
             )
           )
       );

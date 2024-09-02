@@ -3,7 +3,7 @@ import { apiInstance } from '@/utils/api';
 
 export type GetPizzaCatalogConfig = RequestConfig;
 
-export const getPizzaCatalog = async (config?: GetPizzaCatalogConfig): PizzasResponse => {
+export const getPizzaCatalog = async (config?: GetPizzaCatalogConfig): Promise<PizzasResponse> => {
   const response = await apiInstance.get('/pizza/catalog', config?.config);
   return response.data as PizzasResponse;
 };

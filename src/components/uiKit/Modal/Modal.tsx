@@ -26,7 +26,7 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) 
   const modalContent = (
     <div className={clsx(styles.overlay, isOpen ? styles.open : '')} onClick={handleClose}>
       <div className={clsx(styles.content, className, isOpen ? styles.open : '')}>
-        <button className={styles.closeButton} onClick={onClose}>
+        <button type='button' className={styles.closeButton} onClick={onClose}>
           <CrossIcon />
         </button>
         {children}

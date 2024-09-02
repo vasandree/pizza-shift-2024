@@ -3,7 +3,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { usePostAuthOtpQuery, usePostSignInQuery } from '@api/hooks';
-import type { CreateOtpDto, SignInDto } from '@api/types';
+import type { CreateOtpDto, OtpResponse, SignInDto } from '@api/types';
 import { CountDownComponent } from '@components/AuthModal/CountDownComponent.tsx';
 import { InputMask } from '@react-input/mask';
 
@@ -16,7 +16,7 @@ import styles from './AuthModal.module.scss';
 
 interface AuthModalProps {
   isOpen: boolean;
-  setIsOpen: () => void;
+  setIsOpen: (b: boolean) => void;
 }
 
 export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
@@ -36,7 +36,7 @@ export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
     mutateOtp.mutate(
       { params },
       {
-        onSuccess: (data) => {
+        onSuccess: (data: OtpResponse) => {
           setPhone(params.phone);
           form.setValue('phone', params.phone);
           setStage('enterOtp');
@@ -104,7 +104,7 @@ export const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
                   component={Input}
                   placeholder='Номер телефона'
                   className={styles.input}
-                  onChange={() => setPhone(e.target.value)}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </Form.Item>
               <Form.Item name='code' rules={otpCodeValidation} className={styles.formItem}>

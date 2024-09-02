@@ -3,9 +3,10 @@ import { clsx } from 'clsx';
 
 import { IngredientCard, TooltipContent } from '@/components/systemComponents';
 import { addPizzaToCart, updatePizzaInCart } from '@/logic';
+import type { Pizza, PizzaDough, PizzaIngredient, PizzaSize } from '@/utils/api';
 import { doughsRu, ingredientsRu, sizesCm, sizesRu } from '@/utils/consts';
 import { calculateTotalPizzaPrice, getImage, getShortenDoughName } from '@/utils/helpers';
-import type { Pizza, PizzaDough, PizzaInCart, PizzaIngredient, PizzaSize } from '@/utils/types';
+import type { PizzaInCart } from '@/utils/types';
 
 import type { ModalProps } from '../../uiKit';
 import { Button, InfoIcon, Modal, Tabs, Tooltip, Typography } from '../../uiKit';

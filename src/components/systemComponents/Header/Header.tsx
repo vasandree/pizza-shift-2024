@@ -7,6 +7,7 @@ import { logoutUser } from '@/logic';
 import { routes } from '@/utils/consts';
 import type { RootState } from '@/utils/redux';
 import { fetchUserSession } from '@/utils/redux';
+import type { PizzasInCart } from '@/utils/types';
 
 import {
   CartIcon,
@@ -34,7 +35,6 @@ export const Header = () => {
 
   useEffect(() => {
     if (cart && cart.length !== 0) {
-      console.log(cart);
       const totalPizzas = cart.reduce((acc: number, item: PizzasInCart) => acc + item.amount, 0);
       setPizzasInCart(totalPizzas);
     } else {
@@ -78,7 +78,11 @@ export const Header = () => {
                 className={styles.nav_item}
                 onClick={() => navigate(routes.cart())}
               >
-                <CartIcon /> {pizzasInCart > 0 && `(${pizzasInCart})`} Корзина
+                <div className={styles.iconContainer}>
+                  <CartIcon />
+                  {pizzasInCart > 0 && <span className={styles.counter}>{pizzasInCart}</span>}
+                </div>
+                Корзина
               </Typography>
               {user ? (
                 <Typography variant='p' className={styles.nav_item} onClick={() => logoutUser()}>

@@ -1,6 +1,7 @@
 export * from './CartIcon.tsx';
 export * from './ChosenIcon.tsx';
 export * from './CrossIcon.tsx';
+export * from './EmptyCart.tsx';
 export * from './EnterIcon.tsx';
 export * from './ExitIcon.tsx';
 export * from './InfoIcon.tsx';

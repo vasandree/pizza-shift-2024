@@ -1,8 +1,9 @@
+import type { GetUserSessionConfig } from '@api/requests/getUserSession.ts';
 import { getUserSession } from '@api/requests/getUserSession.ts';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import type { GetUserSessionConfig, User } from '@/utils/api';
+import type { User } from '@/utils/api';
 
 export type UserUpdate = Omit<User, '_id' | 'phone'>;
 
