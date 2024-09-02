@@ -1,0 +1,71 @@
+@import '../../../styles/mixins';
+
+.typography {
+  margin: 0;
+  padding: 0;
+
+  &.regular{
+    color: $primary-text-color;
+  }
+
+  &.strong {
+    font-weight: bold;
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  &.secondary{
+    color: $secondary-text-color;
+  }
+
+  &.success{
+    color: $success-color;
+  }
+
+  &.warning{
+    color: $warning-color;
+  }
+
+  &.danger{
+    color: $danger-color;
+  }
+
+  &.link{
+    color: $link-color;
+
+    &.hover{
+      color: lighten($link-color, 10%);
+    }
+
+  }
+
+  &.h1 {
+    font-size: 2.5rem;
+  }
+
+  &.h2 {
+    font-size: 2rem;
+  }
+
+  &.h3 {
+    font-size: 1.75rem;
+  }
+
+  &.h4 {
+    font-size: 1.5rem;
+  }
+
+  &.h5 {
+    font-size: 1.25rem;
+  }
+
+  &.h6 {
+    font-size: 1rem;
+  }
+
+  &.p {
+    font-size: 1rem;
+  }
+}

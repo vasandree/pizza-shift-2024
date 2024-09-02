@@ -1,0 +1,17 @@
+@import '../../../styles/mixins';
+
+.form_item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.error {
+  color: $danger-color;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

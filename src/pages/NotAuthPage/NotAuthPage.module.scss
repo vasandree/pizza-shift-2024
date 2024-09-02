@@ -1,0 +1,30 @@
+@import '../../styles/globals';
+
+
+.not_auth_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  height: 100vh;
+  background-color: $light-color;
+}
+
+.not_auth_content {
+  text-align: center;
+  padding: 20px;
+}
+
+.not_auth_image {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

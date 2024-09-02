@@ -1,0 +1,27 @@
+.tooltip_content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 350px;
+  padding: 10px;
+  color: #fff;
+  border-radius: 8px;
+  white-space: normal;
+}
+
+.allergens {
+  font-size: 0.8rem;
+  word-wrap: break-word;
+}
+
+.text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.tooltip_header {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+}
