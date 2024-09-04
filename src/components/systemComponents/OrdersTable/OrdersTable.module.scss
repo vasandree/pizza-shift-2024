@@ -4,16 +4,13 @@
 .ordersTable {
   width: 100%;
   border-collapse: collapse;
-  font-family: Arial, sans-serif;
 
   th,
   td {
     text-align: left;
     padding: 20px;
-  }
-
-  td{
-    border-top: 1px solid #ddd;
+    word-wrap: break-word;
+    white-space: normal;
   }
 
   th {
@@ -21,29 +18,33 @@
     color: $secondary-text-color;
   }
 
-  td p {
-    margin: 0;
+  td {
+    border-top: 1px solid #ddd;
   }
 
-  .statusIndicator {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 10px;
-    vertical-align: middle;
+
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 20%;
   }
 
-  .statusDelivered {
-    background-color: green;
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 20%;
   }
 
-  .statusCancelled {
-    background-color: red;
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 35%;
+  }
+
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 10%;
   }
 
   a {
-    color: #007bff;
+    color: $secondary-text-color;
     text-decoration: none;
 
     &:hover {

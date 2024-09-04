@@ -1,6 +1,8 @@
-import { Typography } from '@/components/uiKit';
+import { OrderStatus } from '@ui/icons';
+
 import type { PizzaOrder } from '@/utils/api';
 import { PizzaStatus } from '@/utils/api';
+import { statusColors } from '@/utils/consts';
 
 import styles from './OrdersTable.module.scss';
 
@@ -21,7 +23,9 @@ export const OrdersTable = ({ orders }: OrdersTableProps) => (
     <tbody>
       {orders.map((order: PizzaOrder) => (
         <tr key={order._id}>
-          <td>{PizzaStatus[order.status]}</td>
+          <td>
+            <OrderStatus color={statusColors[order.status]} /> {PizzaStatus[order.status]}
+          </td>
           <td>
             {order.receiverAddress.street}, {order.receiverAddress.house},{' '}
             {order.receiverAddress.apartment}
