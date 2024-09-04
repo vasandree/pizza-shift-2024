@@ -64,7 +64,11 @@ export const Header = () => {
                   >
                     <ProfileIcon /> Профиль
                   </Typography>
-                  <Typography variant='p' className={styles.nav_item}>
+                  <Typography
+                    variant='p'
+                    className={styles.nav_item}
+                    onClick={() => navigate(routes.orders())}
+                  >
                     <TimerIcon /> Заказы
                   </Typography>
                 </>

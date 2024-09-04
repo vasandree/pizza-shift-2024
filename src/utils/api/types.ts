@@ -167,14 +167,15 @@ export interface PizzaAddress {
 }
 
 export const PizzaStatus = {
-  0: 'IN_PROCESSING',
-  1: 'WAITING_COURIER',
-  2: 'ON_MY_WAY',
-  3: 'SUCCESS',
-  4: 'CANCELED'
+  0: 'В обрабртке',
+  1: 'Ждет курьера',
+  2: 'В пути',
+  3: 'Доставлен',
+  4: 'Отменен'
 };
 
 export interface PizzaOrder {
+  _id: string;
   person: PizzaPerson;
   receiverAddress: PizzaAddress;
   status: number;
