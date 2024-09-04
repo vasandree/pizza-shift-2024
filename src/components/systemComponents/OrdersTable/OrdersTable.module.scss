@@ -1,0 +1,54 @@
+@import '../../../styles/mixins';
+@import '../../../styles/fonts';
+
+.ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+
+  th,
+  td {
+    text-align: left;
+    padding: 20px;
+  }
+
+  td{
+    border-top: 1px solid #ddd;
+  }
+
+  th {
+    font-weight: normal;
+    color: $secondary-text-color;
+  }
+
+  td p {
+    margin: 0;
+  }
+
+  .statusIndicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .statusDelivered {
+    background-color: green;
+  }
+
+  .statusCancelled {
+    background-color: red;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,3 +1,4 @@
+export * from './getOrders.ts';
 export * from './getPizzaCatalog';
 export * from './patchUserProfile.ts';
 export * from './postAuthOtp';

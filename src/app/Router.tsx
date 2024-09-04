@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 
 import { ProtectedRoute } from '@/app/ProtectedRoute.tsx';
-import { CartPage, MainPage, ProfilePage } from '@/pages';
+import { CartPage, MainPage, OrdersPage, ProfilePage } from '@/pages';
 import { routes } from '@/utils/consts';
 
 import { Layout } from './Layout.tsx';
@@ -21,6 +21,10 @@ export const Router = createBrowserRouter([
           {
             path: routes.profile(),
             element: <ProfilePage />
+          },
+          {
+            path: routes.orders(),
+            element: <OrdersPage />
           }
         ]
       },
