@@ -1,8 +1,9 @@
+import { Link, useNavigate } from 'react-router-dom';
 import { OrderStatus } from '@ui/icons';
 
 import type { PizzaOrder } from '@/utils/api';
 import { PizzaStatus } from '@/utils/api';
-import { statusColors } from '@/utils/consts';
+import { routes, statusColors } from '@/utils/consts';
 
 import styles from './OrdersTable.module.scss';
 
@@ -32,7 +33,7 @@ export const OrdersTable = ({ orders }: OrdersTableProps) => (
           </td>
           <td> Пицца </td>
           <td>
-            <a>Подробнее</a>
+            <Link to={routes.order(order._id)}>Подробнее</Link>
           </td>
         </tr>
       ))}
