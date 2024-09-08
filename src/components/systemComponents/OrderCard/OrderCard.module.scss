@@ -1,0 +1,40 @@
+@import '../../../styles/mixins';
+@import '../../../styles/fonts';
+
+
+.orderCard {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__person,
+  &__address,
+  &__content,
+  &__totalPrice{
+    margin-bottom: 20px;
+
+    h4 {
+      font-size: 16px;
+      color: $secondary-text-color;
+      margin-bottom: 5px;
+      font-weight: normal;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+
+  .cancelBtn{
+    width: 100%;
+  }
+}
