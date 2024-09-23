@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 
 import { Button, OrderStatus } from '@/components/uiKit';
 import type { PizzaOrder } from '@/utils/api';
-import { PizzaStatus } from '@/utils/api';
+import { PizzaStatus, putOrderCancel } from '@/utils/api';
 import { statusColors } from '@/utils/consts';
 
 import styles from './OrderCard.module.scss';
@@ -13,6 +13,12 @@ interface OrderCardProps {
 
 export const OrderCard = ({ order }: OrderCardProps) => {
   const { _id, person, receiverAddress, status, cancellable } = order;
+
+  const cancelOrder = async () => {
+    const res = await putOrderCancel({});
+    if (res.success) alert('Заказ отменен');
+    else alert('Не удалось отменить заказ');
+  };
 
   return (
     <div className={styles.orderCard}>
@@ -42,24 +48,19 @@ export const OrderCard = ({ order }: OrderCardProps) => {
 
       <div className={styles.orderCard__content}>
         <h4>Состав заказа</h4>
-        <p>
-          Пепперони, средняя 30 см, традиционное тесто + моцарелла, халапеньо Сырная, большая 35 см,
-          тонкое тесто
-        </p>
+        <p>Пепперони, средняя 30 см, традиционное тесто + моцарелла, халапеньо</p>
+        <p>Сырная, большая 35 см, тонкое тесто</p>
       </div>
 
       <div className={styles.orderCard__totalPrice}>
         <h4>Сумма заказа</h4>
         <p>1350 ₽</p>
       </div>
-
-      <Button
-        className={styles.cancelBtn}
-        onClick={() => alert('Отменить заказ')}
-        variant='primary'
-      >
-        Отменить заказ
-      </Button>
+      {cancellable && (
+        <Button className={styles.cancelBtn} onClick={cancelOrder} variant='primary'>
+          Отменить заказ
+        </Button>
+      )}
     </div>
   );
 };
