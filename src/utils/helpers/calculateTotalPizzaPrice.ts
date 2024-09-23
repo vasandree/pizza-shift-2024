@@ -1,8 +1,8 @@
-import type { PizzaDough, PizzaIngredient, PizzaSize } from '../types';
+import type { PizzaDough, PizzaIngredient, PizzaSize } from '@/utils/api';
 
 interface Params {
-  currentSize: PizzaSize;
   currentDough: PizzaDough;
+  currentSize: PizzaSize;
   ingredients: PizzaIngredient[];
 }
 

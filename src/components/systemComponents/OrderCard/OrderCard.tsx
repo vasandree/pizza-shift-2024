@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { clsx } from 'clsx';
 
+import { CancelModal } from '@/components/systemComponents';
 import { Button, OrderStatus } from '@/components/uiKit';
 import type { PizzaOrder } from '@/utils/api';
 import { PizzaStatus, putOrderCancel } from '@/utils/api';
@@ -13,11 +15,13 @@ interface OrderCardProps {
 
 export const OrderCard = ({ order }: OrderCardProps) => {
   const { _id, person, receiverAddress, status, cancellable } = order;
+  const [isOpen, setIsOpen] = useState(false);
 
   const cancelOrder = async () => {
     const res = await putOrderCancel({});
     if (res.success) alert('Заказ отменен');
     else alert('Не удалось отменить заказ');
+    setIsOpen(false);
   };
 
   return (
@@ -56,11 +60,14 @@ export const OrderCard = ({ order }: OrderCardProps) => {
         <h4>Сумма заказа</h4>
         <p>1350 ₽</p>
       </div>
-      {cancellable && (
-        <Button className={styles.cancelBtn} onClick={cancelOrder} variant='primary'>
-          Отменить заказ
-        </Button>
-      )}
+      <Button className={styles.cancelBtn} onClick={() => setIsOpen(true)} variant='primary'>
+        Отменить заказ
+      </Button>
+      <CancelModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onSubmit={() => cancelOrder()}
+      />
     </div>
   );
 };

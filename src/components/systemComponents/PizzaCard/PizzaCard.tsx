@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { PizzaModal } from '@/components/systemComponents';
+import type { Pizza } from '@/utils/api';
 import { getImage } from '@/utils/helpers';
-import type { Pizza } from '@/utils/types';
 
 import { Button, Card, Typography } from '../../uiKit';
 

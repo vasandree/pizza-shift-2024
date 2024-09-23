@@ -1,4 +1,5 @@
 export * from './AuthModal/AuthModal';
+export * from './CancelModal/CancelModal';
 export * from './CartElement/CartElement';
 export * from './Header/Header';
 export * from './IngredientCard/IngredientCard';

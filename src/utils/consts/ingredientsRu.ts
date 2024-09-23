@@ -1,4 +1,4 @@
-import type { Ingredients } from '../types';
+import type { Ingredients } from '@/utils/api';
 
 export const ingredientsRu: Record<Ingredients, string> = {
   BACON: 'Бекон',

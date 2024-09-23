@@ -1,4 +1,4 @@
-import type { Size } from '../types';
+import type { Size } from '@/utils/api';
 
 export const sizesRu: Record<Size, string> = {
   SMALL: 'Маленькая',

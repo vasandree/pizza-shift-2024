@@ -1,6 +1,6 @@
+import type { PizzaIngredient } from '@/utils/api';
 import { ingredientsRu } from '@/utils/consts';
 import { getImage } from '@/utils/helpers';
-import type { PizzaIngredient } from '@/utils/types';
 
 import { Card, ChosenIcon, Typography } from '../../uiKit';
 

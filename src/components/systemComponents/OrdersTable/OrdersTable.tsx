@@ -31,7 +31,7 @@ export const OrdersTable = ({ orders }: OrdersTableProps) => (
             {order.receiverAddress.street}, {order.receiverAddress.house},{' '}
             {order.receiverAddress.apartment}
           </td>
-          <td> Пицца </td>
+          <td> Пицца</td>
           <td>
             <Link to={routes.order(order._id)}>Подробнее</Link>
           </td>

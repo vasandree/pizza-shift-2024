@@ -1,4 +1,4 @@
-import type { Size } from '../types';
+import type { Size } from '@/utils/api';
 
 export const sizesCm: Record<Size, string> = {
   SMALL: '25 см',
